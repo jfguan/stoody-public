@@ -1,7 +1,7 @@
 import React from 'react';
 //import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, AppRegistry, Button } from "react-native";
-import { MapView } from "expo";
+import { StyleSheet, Text, View, AppRegistry, Button, Platform} from "react-native";
+import { MapView, Constants, Location, Permissions} from "expo";
 import { createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -11,7 +11,7 @@ import t from 'tcomb-form-native';
 
 // Initialize Firebase
 const firebaseConfig = {
-	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
+	apiKey: "",
 	authDomain: "stoody-7c7e1.firebaseapp.com",
 	databaseURL: "https://stoody-7c7e1.firebaseio.com",
 	projectId: "stoody-7c7e1",
@@ -31,7 +31,7 @@ const Form = t.form.Form;
 const User = t.struct({
   Name: t.String,
   Location: t.String,
-  "How long will you study?": t.String,
+  Studytime: t.String,
   //terms: t.Boolean
 });
 
@@ -86,7 +86,6 @@ class MapScreen extends React.Component {
   	}
   render() {
     return (
-
 			<MapView
 				style={{
 					flex: 9
@@ -106,10 +105,76 @@ class MapScreen extends React.Component {
 }
 
 class SettingsScreen extends React.Component {
+  constructor(props) {
+	  super(props);
+	  this.state = {
+	  	name: null,
+	  	time_study: null,
+	  	spec_loc: null,
+	    g_loc: null,
+	    stoody: true,
+	    errorMessage: null,
+	  };
+	  this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  start_stoody = () => {
+  	this._getLocationAsync();
+  	var users = db.collection('users');
+  	var sp = this.state;// stateproxy var to shorten
+  	console.log("sp");
+  	console.log(sp);
+  	var new_user = users.doc(sp.name).set({
+    username: sp.name, spec_loc: sp.spec_loc, 
+    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(sp.g_loc.coords.latitude, sp.g_loc.coords.longitude)});
+  }
+
+  delete_stoody = () => {
+
+  }
+
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
+    if(this.state.stoody){
+    	this.setState({
+    		...this.state,
+			name: value.Name,
+			spec_loc: value.Location,
+			time_study: value.Studytime,
+			stoody: false
+		}, this.start_stoody);
+    }
+    else{
+    	this.setState({
+    		...this.state,
+			stoody : true
+		}, this.stop_stoody);
+    }
+
   }
+  componentWillMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let g_loc = await Location.getCurrentPositionAsync({});
+    console.log(g_loc);
+    this.setState({ g_loc });
+  };
 
   render() {
     return (
