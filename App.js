@@ -23,43 +23,6 @@ const db = firebaseApp.firestore()
 db.settings(settings)
 
 class MapScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
-        
-      </View>
-    );
-  }
-}
-
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-class TimerScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={styles.bigblue}>Timer!</Text>
-      </View>
-    );
-  }
-}
-
-const MainNavigator = createBottomTabNavigator({
-  Map: { screen: MapScreen },
-  Settings: { screen: SettingsScreen },
-  Timer: {screen: TimerScreen}
-});
-
-export default class IconExample extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = { isLoading: true, markers: [] };
@@ -108,10 +71,9 @@ export default class IconExample extends React.Component {
 			);
 		});
   	}
+  render() {
+    return (
 
-	render() {
-		return (
-		<View style={{flex:1}}>
 			<MapView
 				style={{
 					flex: 9
@@ -127,6 +89,40 @@ export default class IconExample extends React.Component {
 				{this.renderMarkers()}
 					longitude: -83.738285,
 			</MapView>
+    );
+  }
+}
+
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
+
+class TimerScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.bigblue}>Timer!</Text>
+      </View>
+    );
+  }
+}
+
+const MainNavigator = createBottomTabNavigator({
+  Map: { screen: MapScreen },
+  Settings: { screen: SettingsScreen },
+  Timer: {screen: TimerScreen}
+});
+
+export default class IconExample extends React.Component {
+	render() {
+		return (
+		<View style={{flex:1}}>
 			<MainNavigator style={{flex:1}}/>
 			</View>
 		);
