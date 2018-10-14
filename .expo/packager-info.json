@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://43-nb3.alexewu.stoody.exp.direct",
+  "packagerNgrokUrl": "https://packager.43-nb3.alexewu.stoody.exp.direct",
+  "ngrokPid": 41090
 }
