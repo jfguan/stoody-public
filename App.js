@@ -87,7 +87,6 @@ class MapScreen extends React.Component {
 				}}
 			>
 				{this.renderMarkers()}
-					longitude: -83.738285,
 			</MapView>
     );
   }
@@ -124,7 +123,7 @@ export default class IconExample extends React.Component {
 		return (
 		<View style={{flex:1}}>
 			<MainNavigator style={{flex:1}}/>
-			</View>
+		</View>
 		);
 	}
 }
