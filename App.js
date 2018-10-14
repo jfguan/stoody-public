@@ -1,11 +1,11 @@
 import React from 'react';
-//import { Ionicons } from '@expo/vector-icons';
+import { Ionicons as Icon } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry } from "react-native";
 import { MapView } from "expo";
 import { createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+//import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -95,8 +95,8 @@ class MapScreen extends React.Component {
 class SettingsScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
+      <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Timer!</Text>
       </View>
     );
   }
@@ -105,18 +105,65 @@ class SettingsScreen extends React.Component {
 class TimerScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={styles.bigblue}>Timer!</Text>
+      <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.bigblue}>Settings!</Text>
       </View>
     );
   }
 }
 
-const MainNavigator = createBottomTabNavigator({
-  Map: { screen: MapScreen },
-  Settings: { screen: SettingsScreen },
-  Timer: {screen: TimerScreen}
-});
+const MainNavigator = createBottomTabNavigator(
+	{
+	  Map: {
+            screen: MapScreen,
+            navigationOptions: {
+		        title: 'Map',
+		        tabBarIcon: ({ tintColor, focused }) => (
+		          <Icon
+		            name="ios-map"
+		            size={24}
+		            style={{ 
+		            	justifyContent: 'center',
+		            	color: tintColor,
+		            	paddingTop: 5 }}
+		          />
+		        ),
+		    },
+		},
+	  Timer: { 
+	  			screen: SettingsScreen, 
+	  			navigationOptions: {
+			        tabBarLabel: 'Timer',
+			        tabBarIcon: ({ tintColor, focused }) => (
+			          <Icon
+			            name="ios-clock"
+			            size={24}
+			            style={{ color: tintColor,
+			            		 paddingTop: 5}}
+			          />
+			        ),
+		    	},
+	  },
+	  Settings: {
+	  			screen: TimerScreen,
+	  			navigationOptions: {
+			        tabBarLabel: 'Settings',
+			        tabBarIcon: ({ tintColor, focused }) => (
+			          <Icon
+			            name="ios-settings"
+			            size={24}
+			            style={{ color: tintColor,
+		            			 paddingTop: 5 }}
+			          />
+			        ),
+		    	},
+	  },
+	},
+	{
+
+	}
+
+);
 
 export default class IconExample extends React.Component {
 	render() {
@@ -128,12 +175,19 @@ export default class IconExample extends React.Component {
 	}
 }
 
-
 const styles = StyleSheet.create({
     bigblue: {
       color: 'blue',
       fontWeight: 'bold',
       fontSize: 15,
     },
-
+    navBar: {
+		color: 'green',
+    	flex: 1,
+    	flexDirection: 'row',
+    	alignItems: 'center',
+    	backgroundColor: 'red',
+    	justifyContent: 'center',
+    	tintColor: 'red',
+    },
 });
