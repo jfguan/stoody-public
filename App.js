@@ -1,9 +1,11 @@
 import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from "react-native";
+//import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, AppRegistry } from "react-native";
 import { MapView } from "expo";
+import { createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -19,6 +21,42 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const settings = { timestampsInSnapshots: true};
 const db = firebaseApp.firestore()
 db.settings(settings)
+
+class MapScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 0, justifyContent: 'center', alignItems: 'center' }}>
+        
+      </View>
+    );
+  }
+}
+
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
+
+class TimerScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.bigblue}>Timer!</Text>
+      </View>
+    );
+  }
+}
+
+const MainNavigator = createBottomTabNavigator({
+  Map: { screen: MapScreen },
+  Settings: { screen: SettingsScreen },
+  Timer: {screen: TimerScreen}
+});
 
 export default class IconExample extends React.Component {
 
@@ -73,20 +111,34 @@ export default class IconExample extends React.Component {
 
 	render() {
 		return (
+		<View style={{flex:1}}>
 			<MapView
 				style={{
-					flex: 1
+					flex: 9
 				}}
 				
 				initialRegion={{
 					latitude: 42.277154,
-					longitude: -83.738285,
+					longitude: -83.738285, //changed
 					latitudeDelta: 0.01,
 					longitudeDelta: 0.01,
 				}}
 			>
 				{this.renderMarkers()}
+					longitude: -83.738285,
 			</MapView>
+			<MainNavigator style={{flex:1}}/>
+			</View>
 		);
 	}
 }
+
+
+const styles = StyleSheet.create({
+    bigblue: {
+      color: 'blue',
+      fontWeight: 'bold',
+      fontSize: 15,
+    },
+
+});
