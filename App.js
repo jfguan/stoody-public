@@ -12,7 +12,7 @@ import t from 'tcomb-form-native';
 
 // Initialize Firebase
 const firebaseConfig = {
-	apiKey: "",
+	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
 	authDomain: "stoody-7c7e1.firebaseapp.com",
 	databaseURL: "https://stoody-7c7e1.firebaseio.com",
 	projectId: "stoody-7c7e1",
@@ -43,7 +43,7 @@ class MapScreen extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.fetchMarkerData();
+		this.timer = setInterval(()=> this.fetchMarkerData(), 1500);
 	}
 	fetchMarkerData() {
 		let temp = [];
@@ -57,9 +57,6 @@ class MapScreen extends React.Component {
 				var id = doc.id;
 				temp.push(doc.data())
 			});
-			// var jsonData = JSON.stringify(dataObject)
-			// console.log("jsonData")
-			// console.log(jsonData)
 			console.log(temp);
 			this.setState({
 				isLoading: false,
@@ -80,7 +77,7 @@ class MapScreen extends React.Component {
 				key={index}
 				coordinate={coords}
 				title={marker.username}
-				description={marker.spec_loc}
+				description={marker.spec_loc + marker.time_study}
 				/>
 			);
 		});
@@ -130,13 +127,17 @@ class FormScreen extends React.Component {
     time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(sp.g_loc.coords.latitude, sp.g_loc.coords.longitude)});
   }
 
-  delete_stoody = () => {
-
+//  delete_stoody = () => {
+//
+//  }
+  stop_stoody = () => {
+    var deleteDoc = db.collection('users').doc(this.state.name).delete();
   }
 
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
+    console.log(this.state.stoody);
     if(this.state.stoody){
     	this.setState({
     		...this.state,
@@ -179,10 +180,6 @@ class FormScreen extends React.Component {
 
   render() {
     return (
-// <<<<<<< HEAD
-//       <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-//         <Text>Timer!</Text>
-// =======
       <View style={styles.container}>
         <Form 
           ref={c => this._form = c} // assign a ref
@@ -192,7 +189,6 @@ class FormScreen extends React.Component {
           title="Confirm"
           onPress={this.handleSubmit}
         />
-//>>>>>>> be1cd050195e964968b72525c4313bd3bef79317
       </View>
     );
   }
@@ -243,10 +239,10 @@ const MainNavigator = createBottomTabNavigator(
 	  Timer: {
 	  			screen: TimerScreen,
 	  			navigationOptions: {
-			        tabBarLabel: 'Timer',
+			        tabBarLabel: 'Friends (to-do)',
 			        tabBarIcon: ({ tintColor, focused }) => (
 			          <Icon
-			            name="ios-clock"
+			            name="ios-thumbs-up"
 			            size={24}
 			            style={{ color: tintColor,
 		            			 paddingTop: 5 }}
