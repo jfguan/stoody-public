@@ -12,7 +12,7 @@ import t from 'tcomb-form-native';
 
 // Initialize Firebase
 const firebaseConfig = {
-	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
+	apiKey: "",
 	authDomain: "stoody-7c7e1.firebaseapp.com",
 	databaseURL: "https://stoody-7c7e1.firebaseio.com",
 	projectId: "stoody-7c7e1",
@@ -194,11 +194,11 @@ class FormScreen extends React.Component {
   }
 }
 
-class TimerScreen extends React.Component {
+class FriendsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={styles.bigblue}>Settings!</Text>
+        <Text style={styles.bigblue}>wow friends wow so fun much procrastinate :)</Text>
       </View>
     );
   }
@@ -236,8 +236,8 @@ const MainNavigator = createBottomTabNavigator(
 			        ),
 		    	},
 	  },
-	  Timer: {
-	  			screen: TimerScreen,
+	  Friends: {
+	  			screen: FriendsScreen,
 	  			navigationOptions: {
 			        tabBarLabel: 'Friends (to-do)',
 			        tabBarIcon: ({ tintColor, focused }) => (
