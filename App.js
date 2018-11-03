@@ -112,6 +112,7 @@ class FormScreen extends React.Component {
 	    g_loc: null,
 	    stoody: true,
 	    errorMessage: null,
+	    text: "Confirm",
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -144,13 +145,15 @@ class FormScreen extends React.Component {
 			name: value.Name,
 			spec_loc: value.Location,
 			time_study: value.Studytime,
-			stoody: false
+			stoody: false,
+			text: "Delete"
 		}, this.start_stoody);
     }
     else{
     	this.setState({
     		...this.state,
-			stoody : true
+			stoody : true,
+			text: "Confirm"
 		}, this.stop_stoody);
     }
 
@@ -186,8 +189,9 @@ class FormScreen extends React.Component {
           type={User} 
         />
         <Button
-          title="Confirm"
+          //title="Confirm"
           onPress={this.handleSubmit}
+          title = {this.state.text}
         />
       </View>
     );
