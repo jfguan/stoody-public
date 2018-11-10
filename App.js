@@ -72,12 +72,15 @@ class MapScreen extends React.Component {
 				longitude: marker.g_loc._long
 			};
 
-			return(
+			//https://github.com/react-community/react-native-maps/blob/master/docs/marker.md
+      var description = 'Location: ' + marker.spec_loc + ' | Time studying: ' + marker.time_study;
+      return(
 				<MapView.Marker
-				key={index}
+				style={{flex: -1, position: 'absolute', width:300}}
+        key={index}
 				coordinate={coords}
 				title={marker.username}
-				description={marker.spec_loc + marker.time_study}
+				description={description}
 				/>
 			);
 		});
@@ -138,25 +141,25 @@ class FormScreen extends React.Component {
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
     console.log('value: ', value);
-    console.log(this.state.stoody);
-    if(this.state.stoody){
-    	this.setState({
-    		...this.state,
-			name: value.Name,
-			spec_loc: value.Location,
-			time_study: value.Studytime,
-			stoody: false,
-			text: "Delete"
-		}, this.start_stoody);
+    if(value != null){
+      if(this.state.stoody){
+      	this.setState({
+      		...this.state,
+  			name: value.Name,
+  			spec_loc: value.Location,
+  			time_study: value.Studytime,
+  			stoody: false,
+  			text: "Delete"
+  		  }, this.start_stoody);
+      }
+      else{
+      	this.setState({
+      		...this.state,
+  			stoody : true,
+  			text: "Confirm"
+  		  }, this.stop_stoody);
+      }
     }
-    else{
-    	this.setState({
-    		...this.state,
-			stoody : true,
-			text: "Confirm"
-		}, this.stop_stoody);
-    }
-
   }
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
