@@ -205,7 +205,7 @@ class FriendsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={styles.bigblue}>wow friends wow so fun much procrastinate :)</Text>
+        <Text style={styles.mainFont}>wow friends wow so fun much procrastinate :)</Text>
       </View>
     );
   }
@@ -275,10 +275,10 @@ export default class IconExample extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    bigblue: {
-      color: 'blue',
-      fontWeight: 'bold',
-      fontSize: 15,
+    mainFont: {
+        fontFamily: 'Futura',
+        color: 'lightgray',
+        fontSize: 15,
     },
     navBar: {
 		color: 'green',
@@ -295,20 +295,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#ffffff',
   	},
+    
 });
 
-/*const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-});*/
+
