@@ -503,32 +503,6 @@ export default class IconExample extends React.Component {
 	}
 }
 
-//testing out styling the form(status: does nothing)
-const formStyles = {
-  ...Form.stylesheet,
-  formGroup: {
-    normal: {
-      marginBottom: 10,
-    },
-  },
-  controlLabel: {
-    normal: {
-      color: 'blue',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600',
-    },
-    // the style applied when a validation error occours
-    error: {
-      color: 'red',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600'
-    }
-  }
-}
-
-
 const styles = StyleSheet.create({
     mainFont: {
         fontFamily: 'Futura',
@@ -550,6 +524,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#ffffff',
   	},
+    //controls the 'confirm' button on form
     button: {
         height: 36,
         backgroundColor: '#ddaad8',
