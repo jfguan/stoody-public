@@ -300,6 +300,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Futura',
         fontSize: 23,
         marginBottom: 8,
+        marginTop: -
     },
     usernameInput: {
         justifyContent: 'center',
