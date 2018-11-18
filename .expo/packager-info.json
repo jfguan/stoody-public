@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://ce-y6q.alexewu.stoody.exp.direct",
-  "packagerNgrokUrl": "https://packager.ce-y6q.alexewu.stoody.exp.direct",
-  "ngrokPid": 15442
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
