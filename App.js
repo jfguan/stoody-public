@@ -103,8 +103,8 @@ class FormScreen extends React.Component {
   constructor(props) {
 	  super(props);
 	  this.state = {
-	  	subject: null,
-        description: "Description here :O",
+	  	subject: "",
+        description: "",
         confirmed: false,
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
@@ -177,15 +177,17 @@ class FormScreen extends React.Component {
   render() {
     return (
         <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
-            <TextInput style = {styles.usernameInput} >
-                subject
-            </TextInput>
+            <TextInput style = {styles.usernameInput} 
+                value={this.state.subject}
+                placeholder="subject"
+            />
             <Text style = {styles.lineStyle} >
                 --------------------------------------------------------
             </Text>
-            <TextInput style = {styles.descriptionInput} >
-                enter description
-            </TextInput>
+            <TextInput style = {styles.descriptionInput}
+                value={this.state.description}
+                placeholder="enter description"
+            />
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
               <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
@@ -198,20 +200,29 @@ class FormScreen extends React.Component {
 //=====================================================================
 class FriendsScreen extends React.Component {
     handleSubmit = () => { }
+    constructor(props) {
+     super(props)
+     this.state = { 
+        username: "",
+        placeholder: "enter username",
+     }
+    }  
     render() {
         return (
             <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
-                <TextInput style = {styles.addFriendInput} >
-                    enter friend username
-                </TextInput>
+                <TextInput style = {styles.addFriendInput}
+//                    onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
+                    value={this.state.username}
+                    placeholder="enter username"
+                />
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                   <Text style={styles.buttonText}>add/remove</Text>
                 </TouchableHighlight>
                 <View style = {{height:100}}
                 />
-                <TextInput style = {styles.usernameInput} >
+                <Text style = {styles.friendTitle} >
                     friends
-                </TextInput>
+                </Text>
                 <Text style = {styles.lineStyle} >
                     --------------------------------------------------------
                 </Text>
@@ -219,7 +230,13 @@ class FriendsScreen extends React.Component {
                     alexewu
                 </Text>
                 <Text style = {styles.friendNameStyle} >
-                    jeff
+                    chaitea
+                </Text>
+                <Text style = {styles.friendNameStyle} >
+                    erchen
+                </Text>
+                <Text style = {styles.friendNameStyle} >
+                    gadkari
                 </Text>
             </View>
         );
@@ -301,6 +318,9 @@ const styles = StyleSheet.create({
         fontSize: 23,
         marginBottom: 8,
         marginTop: -4,
+        borderColor: 'gray',
+        borderWidth: 0,
+        borderRadius: 24,
     },
     usernameInput: {
         justifyContent: 'center',
@@ -308,6 +328,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Futura',
         fontSize: 31,
         marginBottom: -8,
+    },
+    friendTitle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Futura',
+        fontSize: 28,
+        marginBottom: -14,
+        letterSpacing: 4,
+        fontWeight: 'bold',
     },
     descriptionInput: {
         justifyContent: 'center',
@@ -324,14 +353,15 @@ const styles = StyleSheet.create({
         color: '#3b3b3b',
         fontFamily: 'Futura',
         fontSize: 23,
-        marginBottom: 20,
+        marginBottom: 10,
     },
     friendNameStyle: {
-        fontWeight: 'bold',
-        color: '#a8f475',
+//        fontWeight: 'bold',
+        color: '#85c667',
         fontFamily: 'Futura',
         fontSize: 23,
         marginBottom: 20,
+        letterSpacing: 3,
     },
     navBar: {
 		color: 'green',
@@ -348,12 +378,12 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#ffffff',
   	},
-    //controls the 'confirm' button on form
+    //controls the 'confirm' and 'add/remove' button on form
     button: {
         height: 36,
         backgroundColor: '#3b3b3b',
         borderRadius: 24,
-        marginBottom: 10,
+        marginBottom: 70,
         alignSelf: 'center',
         justifyContent: 'center',
         width: 250,
