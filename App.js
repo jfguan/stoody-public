@@ -26,7 +26,6 @@ const db = firebaseApp.firestore()
 db.settings(settings)
 
 //======================SCREEN CONTAINING MAP==========================
-//=====================================================================
 class MapScreen extends React.Component {
 	constructor(props) {
 		super(props);
