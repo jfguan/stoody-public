@@ -115,7 +115,7 @@ class FormScreen extends React.Component {
   	var users = db.collection('users');
   	console.log("this.state");
   	console.log(this.state);
-  	var new_user = users.doc(sp.name).set({
+  	var new_user = users.doc("Jeff Guan").set({
     username: sp.name, spec_loc: sp.spec_loc, 
     time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
@@ -131,9 +131,8 @@ class FormScreen extends React.Component {
       if(this.state.confirmed){
       	this.setState({
       		...this.state,
-  			name: value.Name,
-  			spec_loc: value.Location,
-  			time_study: value.Study_Time,
+  			subject: "",
+        description: "",
   			confirmed: true,
   			text: "Delete"
   		  }, this.start_stoody);
@@ -183,7 +182,7 @@ class FormScreen extends React.Component {
             </Text>
             <TextInput style = {styles.descriptionInput}
                 value={this.state.description}
-                placeholder="enter description"
+                placeholder="enter description(Specific location, time studying, etc)"
             />
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
               <Text style={styles.buttonText}>confirm</Text>
