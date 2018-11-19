@@ -149,7 +149,6 @@ class FormScreen extends React.Component {
 
   componentWillMount() {
       this._getLocationAsync();
-    }
   }
 
   _getLocationAsync = async () => {
