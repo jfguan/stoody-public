@@ -104,8 +104,9 @@ class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
 	  	subject: "",
-        description: "",
-        confirmed: false,
+      description: "",
+      g_loc: null,
+      confirmed: false,
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -113,17 +114,13 @@ class FormScreen extends React.Component {
   start_stoody = () => {
   	this._getLocationAsync();
   	var users = db.collection('users');
-  	var sp = this.state;// stateproxy var to shorten
-  	console.log("sp");
-  	console.log(sp);
+  	console.log("this.state");
+  	console.log(this.state);
   	var new_user = users.doc(sp.name).set({
     username: sp.name, spec_loc: sp.spec_loc, 
-    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(sp.g_loc.coords.latitude, sp.g_loc.coords.longitude)});
+    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
 
-//  delete_stoody = () => {
-//
-//  }
   stop_stoody = () => {
     var deleteDoc = db.collection('users').doc(this.state.name).delete();
   }
@@ -151,6 +148,7 @@ class FormScreen extends React.Component {
       }
     }
   }
+
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
       this.setState({
