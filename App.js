@@ -130,19 +130,19 @@ class FormScreen extends React.Component {
     if(value != null){
       if(this.state.confirmed){
       	this.setState({
-      		...this.state,
-  			subject: "",
-        description: "",
-  			confirmed: true,
-  			text: "Delete"
-  		  }, this.start_stoody);
+          ...this.state,
+        confirmed : false,
+        text: "Confirm"
+        }, this.stop_stoody);
       }
       else{
-      	this.setState({
-      		...this.state,
-  			confirmed : false,
-  			text: "Confirm"
-  		  }, this.stop_stoody);
+        this.setState({
+          ...this.state,
+        subject: "",
+        description: "",
+        confirmed: true,
+        text: "Delete"
+        }, this.start_stoody);
       }
     }
   }
