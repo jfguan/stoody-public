@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Ionicons as Icon } from '@expo/vector-icons';
 //import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput } from "react-native";
@@ -103,9 +103,10 @@ class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
 	  	subject: "",
-      description: "",
-      g_loc: null,
-      confirmed: false,
+        description: "",
+        g_loc: null,
+        confirmed: false,
+        text: 'Useless Multiline Placeholderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -171,17 +172,28 @@ class FormScreen extends React.Component {
                 value={this.state.subject}
                 placeholder="subject"
             />
+        
+            
             <Text style = {styles.lineStyle} >
                 --------------------------------------------------------
             </Text>
+        />
+            
+            <View style={styles.container}>
             <TextInput style = {styles.descriptionInput}
+                multiline = {true}
+                numberOfLines = {7}
+                onChangeText={(text) => this.setState({text})}
                 value={this.state.description}
-                placeholder="enter description(Specific location, time studying, etc)"
+                placeholder="enter description(Specific location, time stu"
             />
+            </View>
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
               <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
           </View>
+            
+            
     );
   }
 }
@@ -294,6 +306,15 @@ export default class IconExample extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: { //add to view to make text wrap
+        width: 0,
+        flexGrow: 1,
+        flex: 1,
+        flex: 4, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        alignSelf: "center",
+    },
     mainFont: {
         fontFamily: 'Futura',
         color: '#3b3b3b',
@@ -333,9 +354,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: '#5d6777',
         fontFamily: 'Futura',
-        fontSize: 23,
-        marginTop: 100,
+        marginTop: 80,
         marginBottom: 175,
+        fontSize: 23,
+        maxHeight: 275,
+        textAlign: 'center',
     },
     lineStyle: {
         justifyContent: 'center',
