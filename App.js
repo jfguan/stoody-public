@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Ionicons as Icon } from '@expo/vector-icons';
 //import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput } from "react-native";
+import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView } from "react-native";
 import { MapView, Constants, Location, Permissions} from "expo";
 import { createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
@@ -102,23 +102,23 @@ class FormScreen extends React.Component {
   constructor(props) {
 	  super(props);
 	  this.state = {
+        name: "",
 	  	subject: "",
         description: "",
         g_loc: null,
         confirmed: false,
-        text: 'Useless Multiline Placeholderrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   start_stoody = () => {
-  	this._getLocationAsync();
-  	var users = db.collection('users');
-  	console.log("this.state");
-  	console.log(this.state);
-  	var new_user = users.doc("Jeff Guan").set({
-    username: sp.name, spec_loc: sp.spec_loc, 
-    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+//  	this._getLocationAsync();
+//  	var users = db.collection('users');
+//  	console.log("this.state");
+//  	console.log(this.state);
+//  	var new_user = users.doc("Jeff Guan").set({
+//    username: sp.name, spec_loc: sp.spec_loc, 
+//    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
 
   stop_stoody = () => {
@@ -126,8 +126,8 @@ class FormScreen extends React.Component {
   }
 
   handleSubmit = () => {
-    const value = this._form.getValue(); // use that ref to get the form value
-    console.log('value: ', value);
+    //const value = this._form.getValue(); // use that ref to get the form value
+    console.log('description: ', description);
     if(value != null){
       if(this.state.confirmed){
       	this.setState({
@@ -171,29 +171,24 @@ class FormScreen extends React.Component {
             <TextInput style = {styles.usernameInput} 
                 value={this.state.subject}
                 placeholder="subject"
+                returnKeyType='done'
             />
-        
-            
             <Text style = {styles.lineStyle} >
                 --------------------------------------------------------
             </Text>
-        />
-            
-            <View style={styles.container}>
-            <TextInput style = {styles.descriptionInput}
-                multiline = {true}
-                numberOfLines = {7}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.description}
-                placeholder="enter description(Specific location, time stu"
-            />
-            </View>
+            <ScrollView scrollEnabled={false} style={styles.scrollContainer}>
+                <TextInput style = {styles.descriptionInput}
+                    placeholder="enter description(Specific location, time stu"
+                    onSubmitEditing={this.searchSubmit}
+                    multiline={true}
+                    numberOfLines={7}
+                    value={this.state.description}
+                />
+            </ScrollView>
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
-              <Text style={styles.buttonText}>confirm</Text>
+                <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
-          </View>
-            
-            
+        </View>
     );
   }
 }
@@ -306,15 +301,6 @@ export default class IconExample extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: { //add to view to make text wrap
-        width: 0,
-        flexGrow: 1,
-        flex: 1,
-        flex: 4, 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        alignSelf: "center",
-    },
     mainFont: {
         fontFamily: 'Futura',
         color: '#3b3b3b',
@@ -355,10 +341,11 @@ const styles = StyleSheet.create({
         color: '#5d6777',
         fontFamily: 'Futura',
         marginTop: 80,
-        marginBottom: 175,
+        //marginBottom: 175,
         fontSize: 23,
         maxHeight: 275,
         textAlign: 'center',
+        width: 320,
     },
     lineStyle: {
         justifyContent: 'center',
@@ -366,7 +353,7 @@ const styles = StyleSheet.create({
         color: '#3b3b3b',
         fontFamily: 'Futura',
         fontSize: 23,
-        marginBottom: 10,
+        marginBottom: 0,
     },
     friendNameStyle: {
 //        fontWeight: 'bold',
@@ -385,15 +372,12 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
     	tintColor: 'red',
     },
-    container: {
-        justifyContent: 'center',
-        marginTop: 50,
-        padding: 20,
-        backgroundColor: '#ffffff',
+    scrollContainer: {
+        //justifyContent: 'center',
+        //padding: 20,
   	},
     //controls the 'confirm' and 'add/remove' button on form
     button: {
-        height: 36,
         backgroundColor: '#3b3b3b',
         borderRadius: 24,
         marginBottom: 70,
