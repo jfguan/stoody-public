@@ -33,7 +33,7 @@ class MapScreen extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.timer = setInterval(()=> this.fetchMarkerData(), 1500);
+		this.timer = setInterval(()=> this.fetchMarkerData(), 3000);
 	}
 	fetchMarkerData() {
 		let temp = [];
@@ -47,7 +47,7 @@ class MapScreen extends React.Component {
 				var id = doc.id;
 				temp.push(doc.data())
 			});
-			console.log(temp);
+			//console.log(temp);
 			this.setState({
 				isLoading: false,
 				markers: temp
@@ -63,14 +63,13 @@ class MapScreen extends React.Component {
 			};
 
 			//https://github.com/react-community/react-native-maps/blob/master/docs/marker.md
-      var description = 'Location: ' + marker.spec_loc + ' | Time studying: ' + marker.time_study;
       return(
 				<MapView.Marker
 				style={{flex: -1, position: 'absolute', width:300}}
         key={index}
 				coordinate={coords}
-				title={marker.username}
-				description={description}
+				title={marker.subject}
+				description={marker.description}
 				/>
 			);
 		});
@@ -97,54 +96,60 @@ class MapScreen extends React.Component {
 
 
 //======================SCREEN CONTAINING FORM=========================
-//=====================================================================
 class FormScreen extends React.Component {
   constructor(props) {
 	  super(props);
 	  this.state = {
         name: "",
-	  	subject: "",
+	  	  subject: "",
         description: "",
         g_loc: null,
         confirmed: false,
 	  };
-	  this.handleSubmit = this.handleSubmit.bind(this)
+	  this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   start_stoody = () => {
-//  	this._getLocationAsync();
-//  	var users = db.collection('users');
-//  	console.log("this.state");
-//  	console.log(this.state);
-//  	var new_user = users.doc("Jeff Guan").set({
-//    username: sp.name, spec_loc: sp.spec_loc, 
-//    time_study: sp.time_study, g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+ 	this._getLocationAsync();
+ 	var users = db.collection('users');
+ 	console.log("this.state");
+ 	console.log(this.state);
+ 	var new_user = users.doc("Jeff Guan").set({
+    subject: this.state.subject, 
+    description: this.state.description, 
+    g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
 
   stop_stoody = () => {
-    var deleteDoc = db.collection('users').doc(this.state.name).delete();
+    var users = db.collection('users');
+    var new_user = users.doc("Jeff Guan").set({
+    g_loc: new firebase.firestore.GeoPoint(0, 0)});
+  }
+
+  handleInputChange(event = {}) {
+    const name = event.target && event.target.name;
+    const value = event.target && event.target.value;
+
+    this.setState([name]: value);
+    console.log("-------------this.state-----------");
+    console.log(this.state);
   }
 
   handleSubmit = () => {
-    //const value = this._form.getValue(); // use that ref to get the form value
-    console.log('description: ', description);
-    if(value != null){
-      if(this.state.confirmed){
-      	this.setState({
-          ...this.state,
-        confirmed : false,
-        text: "Confirm"
-        }, this.stop_stoody);
-      }
-      else{
-        this.setState({
-          ...this.state,
-        subject: "",
-        description: "",
-        confirmed: true,
-        text: "Delete"
-        }, this.start_stoody);
-      }
+    if(this.state.confirmed){
+    	this.setState({
+        ...this.state,
+      confirmed : false,
+      text: "Confirm"
+      }, this.stop_stoody);
+    }
+    else{
+      this.setState({
+        ...this.state,
+      confirmed: true,
+      text: "Delete"
+      }, this.start_stoody);
     }
   }
 
@@ -169,22 +174,22 @@ class FormScreen extends React.Component {
     return (
         <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
             <TextInput style = {styles.usernameInput} 
+                ref= {(el) => { this.subject = el; }}
+                onChangeText={(subject) => this.setState({subject})}
                 value={this.state.subject}
-                placeholder="subject"
+                placeholder='subject'
                 returnKeyType='done'
             />
             <Text style = {styles.lineStyle} >
                 --------------------------------------------------------
             </Text>
-            <ScrollView scrollEnabled={false} style={styles.scrollContainer}>
-                <TextInput style = {styles.descriptionInput}
-                    placeholder="enter description(Specific location, time stu"
-                    onSubmitEditing={this.searchSubmit}
-                    multiline={true}
-                    numberOfLines={7}
-                    value={this.state.description}
-                />
-            </ScrollView>
+            <TextInput style = {styles.descriptionInput}
+              placeholder="description: location, time, etc."
+              ref= {(el) => { this.description = el; }}
+              onChangeText={(description) => this.setState({description})}
+              multiline={true}
+              numberOfLines={7}
+            />
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                 <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
