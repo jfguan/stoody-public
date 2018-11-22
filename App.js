@@ -124,7 +124,7 @@ class FormScreen extends React.Component {
   stop_stoody = () => {
     var users = db.collection('users');
     var new_user = users.doc("Jeff Guan").set({
-    g_loc: new firebase.firestore.GeoPoint(0, 0)});
+    g_loc: new firebase.firestore.GeoPoint(-90, 0)});
   }
 
   handleInputChange(event = {}) {
