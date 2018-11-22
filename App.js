@@ -4,7 +4,7 @@ import { Ionicons as Icon } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView } from "react-native";
 import { Constants, Location, Permissions} from "expo";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import { createBottomTabNavigator } from 'react-navigation'
+import {createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 //import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -197,7 +197,6 @@ class FormScreen extends React.Component {
 }
 
 //======================SCREEN CONTAINING FRIENDS==========================
-//=====================================================================
 class FriendsScreen extends React.Component {
     handleSubmit = () => { }
     constructor(props) {
@@ -293,7 +292,19 @@ const MainNavigator = createBottomTabNavigator(
 
 );
 
-export default class IconExample extends React.Component {
+class HomeScreen extends React.Component {
+  render() {
+    const {navigate} = this.props.navigation;
+    return (
+      <Button
+        title="Go to Map"
+        onPress={() => navigate('Map')}
+      />
+    );
+  }
+}
+
+export default class StackManager extends React.Component {
 	render() {
 		return (
 		<View style={{flex:1}}>
@@ -302,6 +313,13 @@ export default class IconExample extends React.Component {
 		);
 	}
 }
+
+// const App = createStackNavigator({
+//   Home: {screen: HomeScreen},
+//   Map: {screen: MainNavigator},
+// });
+
+// export default App;
 
 const styles = StyleSheet.create({
     mainFont: {
