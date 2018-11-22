@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Ionicons as Icon } from '@expo/vector-icons';
 //import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView } from "react-native";
-import { MapView, Constants, Location, Permissions} from "expo";
+import { Constants, Location, Permissions} from "expo";
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import { createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 //import Ionicons from 'react-native-vector-icons/Ionicons';
-
-//import t from 'tcomb-form-native';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -65,7 +64,6 @@ class MapScreen extends React.Component {
 			//https://github.com/react-community/react-native-maps/blob/master/docs/marker.md
       return(
 				<MapView.Marker
-				style={{flex: -1, position: 'absolute', width:300}}
         key={index}
 				coordinate={coords}
 				title={marker.subject}
@@ -80,7 +78,7 @@ class MapScreen extends React.Component {
 				style={{
 					flex: 9
 				}}
-				
+				provider = { PROVIDER_GOOGLE }
 				initialRegion={{
 					latitude: 42.277154,
 					longitude: -83.738285, //changed
