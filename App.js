@@ -7,7 +7,6 @@ import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-//import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -304,7 +303,7 @@ class HomeScreen extends React.Component {
   }
 }
 
-//https://stackoverflow.com/questions/51129444/how-to-hide-header-of-createstacknavigator-on-react-native
+//https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
   Home: {screen: HomeScreen,
           navigationOptions: {
