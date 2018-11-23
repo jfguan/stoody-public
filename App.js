@@ -304,22 +304,31 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default class StackManager extends React.Component {
-	render() {
-		return (
-		<View style={{flex:1}}>
-			<MainNavigator style={{flex:1}}/>
-		</View>
-		);
-	}
-}
+// export default class StackManager extends React.Component {
+// 	render() {
+// 		return (
+// 		<View style={{flex:1}}>
+// 			<MainNavigator style={{flex:1}}/>
+// 		</View>
+// 		);
+// 	}
+// }
 
-// const App = createStackNavigator({
-//   Home: {screen: HomeScreen},
-//   Map: {screen: MainNavigator},
-// });
+//https://stackoverflow.com/questions/51129444/how-to-hide-header-of-createstacknavigator-on-react-native
+const App = createStackNavigator({
+  Home: {screen: HomeScreen,
+          navigationOptions: {
+            header: null 
+        }
+  },
+  Map: {screen: MainNavigator,
+        navigationOptions: {
+            header: null 
+        }
+  },
+});
 
-// export default App;
+export default App;
 
 const styles = StyleSheet.create({
     mainFont: {
