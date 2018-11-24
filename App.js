@@ -296,8 +296,8 @@ class HomeScreen extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <Button
-        title="Go to Map"
-        onPress={() => navigate('Map')}
+        title="Go to MainNav"
+        onPress={() => navigate('MainNav')}
       />
     );
   }
@@ -310,7 +310,7 @@ const App = createStackNavigator({
             header: null 
         }
   },
-  Map: {screen: MainNavigator,
+  MainNav: {screen: MainNavigator,
         navigationOptions: {
             header: null 
         }
