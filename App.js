@@ -303,9 +303,23 @@ class HomeScreen extends React.Component {
   }
 }
 
+import Loading from './Loading'
+import SignUp from './SignUp'
+import Login from './Login'
+
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
-  Home: {screen: HomeScreen,
+  Loading: {screen: Loading,
+          navigationOptions: {
+            header: null 
+        }
+  },
+  SignUp: {screen: SignUp,
+          navigationOptions: {
+            header: null 
+        }
+  },
+  Login: {screen: Login,
           navigationOptions: {
             header: null 
         }

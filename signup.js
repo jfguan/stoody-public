@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 
 // Registration screen
-class SignUp extends React.Component {
+export default class SignUp extends React.Component {
   state = { 
     email: '', 
     password: '', 
