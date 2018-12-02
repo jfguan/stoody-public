@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Ionicons as Icon } from '@expo/vector-icons';
 //import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView } from "react-native";
+import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants, Location, Permissions} from "expo";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -169,6 +170,7 @@ class FormScreen extends React.Component {
 
   render() {
     return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
         <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
             <TextInput style = {styles.usernameInput} 
                 ref= {(el) => { this.subject = el; }}
@@ -191,6 +193,7 @@ class FormScreen extends React.Component {
                 <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
         </View>
+       </TouchableWithoutFeedback> 
     );
   }
 }

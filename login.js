@@ -5,6 +5,7 @@ export default class Login extends React.Component {
   state = { email: '', password: '', errorMessage: null }
   handleLogin = () => {
     // TODO: Firebase stuff...
+    this.props.navigation.navigate('MainNav')
     console.log('handleLogin')
   }
   render() {
