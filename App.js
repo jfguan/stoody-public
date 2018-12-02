@@ -10,7 +10,7 @@ import 'firebase/firestore';
 
 // Initialize Firebase
 const firebaseConfig = {
-	apiKey: "",
+	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
 	authDomain: "stoody-7c7e1.firebaseapp.com",
 	databaseURL: "https://stoody-7c7e1.firebaseio.com",
 	projectId: "stoody-7c7e1",
