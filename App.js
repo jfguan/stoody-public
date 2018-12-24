@@ -210,6 +210,7 @@ class FriendsScreen extends React.Component {
     }  
     render() {
         return (
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
             <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
                 <TextInput style = {styles.addFriendInput}
 //                    onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
@@ -240,6 +241,7 @@ class FriendsScreen extends React.Component {
                     gadkari
                 </Text>
             </View>
+          </TouchableWithoutFeedback>
         );
     }
 }
@@ -306,9 +308,9 @@ class HomeScreen extends React.Component {
   }
 }
 
-import Loading from './Loading'
-import SignUp from './SignUp'
-import Login from './Login'
+import Loading from './loading'
+import SignUp from './signup'
+import Login from './login'
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
