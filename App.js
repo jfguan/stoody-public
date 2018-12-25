@@ -24,9 +24,11 @@ const settings = { timestampsInSnapshots: true};
 const db = firebaseApp.firestore()
 db.settings(settings)
 
+
 //======================SCREEN CONTAINING MAP==========================
 class MapScreen extends React.Component {
-	constructor(props) {
+	
+  constructor(props) {
 		super(props);
 		this.state = { isLoading: true, markers: [] };
 	}
@@ -34,6 +36,7 @@ class MapScreen extends React.Component {
 	componentDidMount() {
 		this.timer = setInterval(()=> this.fetchMarkerData(), 3000);
 	}
+
 	fetchMarkerData() {
 		let temp = [];
 		var dataObject = {};
@@ -54,6 +57,7 @@ class MapScreen extends React.Component {
 		})
 
 	}
+
 	renderMarkers() {
 		return this.state.isLoading ? null : this.state.markers.map((marker, index) => {
 			const coords = {
@@ -71,7 +75,8 @@ class MapScreen extends React.Component {
 				/>
 			);
 		});
-  	}
+  }
+
   render() {
     return (
 			<MapView
@@ -142,7 +147,7 @@ class FormScreen extends React.Component {
   }
 
   componentWillMount() {
-      this._getLocationAsync();
+    this._getLocationAsync();
   }
 
   _getLocationAsync = async () => {
@@ -184,7 +189,7 @@ class FormScreen extends React.Component {
                 <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
         </View>
-       </TouchableWithoutFeedback> 
+      </TouchableWithoutFeedback> 
     );
   }
 }
@@ -223,23 +228,29 @@ class FriendsScreen extends React.Component {
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                   <Text style={styles.buttonText}>add/remove</Text>
                 </TouchableHighlight>
-                <View style = {{height:100}}
-                />
+                
+                <View style = {{height:100}}/>
+                
                 <Text style = {styles.friendTitle} >
                     friends
                 </Text>
+                
                 <Text style = {styles.lineStyle} >
                     --------------------------------------------------------
                 </Text>
+                
                 <Text style = {styles.friendNameStyle} >
                   {currentUser && currentUser.email} 
                 </Text>
+                
                 <Text style = {styles.friendNameStyle} >
                     chaitea
                 </Text>
+                
                 <Text style = {styles.friendNameStyle} >
                     erchen
                 </Text>
+                
                 <Text style = {styles.friendNameStyle} >
                     gadkari
                 </Text>
@@ -276,7 +287,8 @@ const MainNavigator = createBottomTabNavigator(
 			            name="ios-folder"
 			            size={24}
 			            style={{ color: tintColor,
-			            		 paddingTop: 5}}
+                           paddingTop: 5 
+                        }}
 			          />
 			        ),
 		    	},
@@ -290,7 +302,8 @@ const MainNavigator = createBottomTabNavigator(
 			            name="ios-people"
 			            size={24}
 			            style={{ color: tintColor,
-		            			 paddingTop: 5 }}
+		            			     paddingTop: 5 
+                        }}
 			          />
 			        ),
 		    	},
