@@ -104,8 +104,7 @@ class FormScreen extends React.Component {
         g_loc: null,
         confirmed: false,
 	  };
-	  this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+	  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   start_stoody = () => {
@@ -123,15 +122,6 @@ class FormScreen extends React.Component {
     var users = db.collection('users');
     var new_user = users.doc("Jeff Guan").set({
     g_loc: new firebase.firestore.GeoPoint(-90, 0)});
-  }
-
-  handleInputChange(event = {}) {
-    const name = event.target && event.target.name;
-    const value = event.target && event.target.value;
-
-    this.setState([name]: value);
-    console.log("-------------this.state-----------");
-    console.log(this.state);
   }
 
   handleSubmit = () => {
@@ -308,18 +298,6 @@ const MainNavigator = createBottomTabNavigator(
 	},
 
 );
-
-class HomeScreen extends React.Component {
-  render() {
-    const {navigate} = this.props.navigation;
-    return (
-      <Button
-        title="Go to MainNav"
-        onPress={() => navigate('MainNav')}
-      />
-    );
-  }
-}
 
 import Loading from './loading'
 import SignUp from './signup'
