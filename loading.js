@@ -18,10 +18,6 @@ componentDidMount() {
 
   render() {
     return (
-//      <View style={styles.container}>
-//        <Text>Loading</Text>
-//        <ActivityIndicator size="large" />
-//      </View>
         <ImageBackground source={require('./splash.jpg')}
                         style={styles.container}>
             <Text>Wow I love bald ppl</Text>

@@ -206,9 +206,11 @@ class FriendsScreen extends React.Component {
      this.state = { 
         username: "",
         placeholder: "enter username",
+        currentUser: null
      }
     }  
     render() {
+        const { currentUser } = this.state.currentUser
         return (
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
             <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>

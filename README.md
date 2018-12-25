@@ -17,4 +17,6 @@ Account fields
 1. Username
 2. passhash
 3. email
-4. Friend requests array [alexewu, erchen, ameya gadkari]
+4. Friend requests array [alexewu, erchen, ameya gadkari
+
+remove loading.js loading circle
