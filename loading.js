@@ -11,18 +11,17 @@ function sleepFor( sleepDuration ){
 export default class Loading extends React.Component { 
 componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      sleepFor(1500);
+      sleepFor(1000);
       this.props.navigation.navigate(user ? 'MainNav' : 'Login')
     })
   }
 
   render() {
     return (
-        <ImageBackground source={require('./splash.jpg')}
-                        style={styles.container}>
-            <Text>AHHhHHHHHHH</Text>
+        <ImageBackground source={require('./stoodysplash.png')} style={styles.container} >
+            <Text></Text>
         </ImageBackground>
-    )
+    ) 
   }
 }
 

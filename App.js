@@ -183,11 +183,12 @@ class FormScreen extends React.Component {
                 --------------------------------------------------------
             </Text>
             <TextInput style = {styles.descriptionInput}
-              placeholder="description: location, time, etc."
-              ref= {(el) => { this.description = el; }}
-              onChangeText={(description) => this.setState({description})}
-              multiline={true}
-              numberOfLines={7}
+                placeholder="description: location, time, etc."
+                ref= {(el) => { this.description = el; }}
+                onChangeText={(description) => this.setState({description})}
+                multiline={true}
+                maxLength = {40}
+                numberOfLines={5}
             />
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                 <Text style={styles.buttonText}>confirm</Text>
@@ -293,10 +294,10 @@ const MainNavigator = createBottomTabNavigator(
 	  Friends: {
 	  			screen: FriendsScreen,
 	  			navigationOptions: {
-			        tabBarLabel: 'Friends (to-do)',
+			        tabBarLabel: 'Friends',
 			        tabBarIcon: ({ tintColor, focused }) => (
 			          <Icon
-			            name="ios-thumbs-up"
+			            name="ios-people"
 			            size={24}
 			            style={{ color: tintColor,
 		            			 paddingTop: 5 }}
@@ -391,7 +392,7 @@ const styles = StyleSheet.create({
         color: '#5d6777',
         fontFamily: 'Futura',
         marginTop: 80,
-        //marginBottom: 175,
+        marginBottom: 175,
         fontSize: 23,
         maxHeight: 275,
         textAlign: 'center',
