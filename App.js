@@ -201,23 +201,33 @@ class FormScreen extends React.Component {
 //======================SCREEN CONTAINING FRIENDS==========================
 class FriendsScreen extends React.Component {
     handleSubmit = () => { }
+    
     constructor(props) {
-     super(props)
-     this.state = { 
-        username: "",
-        placeholder: "enter username",
-        currentUser: null
-     }
-    }  
+    super(props)
+      this.state = { 
+          username: "",
+          placeholder: "enter username",
+          currentUser: null
+      }
+    } 
+    
+    componentDidMount() {
+      const { currentUser } = firebase.auth()
+      this.setState({ 
+        ...this.state,
+        currentUser: currentUser,
+      })
+    }
+    
     render() {
-        const { currentUser } = this.state.currentUser
+        const { currentUser } = this.state
         return (
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
             <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
                 <TextInput style = {styles.addFriendInput}
-//                    onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
+//                  onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
                     value={this.state.username}
-                    placeholder="enter username"
+                    placeholder = {currentUser && currentUser.email}
                 />
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                   <Text style={styles.buttonText}>add/remove</Text>
