@@ -18,9 +18,10 @@ componentDidMount() {
 
   render() {
     return (
-        <ImageBackground source={require('./stoodysplash.png')} style={styles.container} >
-            <Text></Text>
-        </ImageBackground>
+      //Splash screen
+      <ImageBackground source={require('./stoodysplash.png')} style={styles.container} >
+          <Text></Text>
+      </ImageBackground>
     ) 
   }
 }
