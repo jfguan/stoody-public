@@ -11,7 +11,7 @@ function sleepFor( sleepDuration ){
 export default class Loading extends React.Component { 
 componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      sleepFor(1000);
+      sleepFor(0);
       this.props.navigation.navigate(user ? 'MainNav' : 'Login')
     })
   }
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+}) 
