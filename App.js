@@ -227,7 +227,7 @@ class FriendsScreen extends React.Component {
                 <TextInput style = {styles.addFriendInput}
 //                  onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
                     value={this.state.username}
-                    placeholder = {currentUser && currentUser.email}
+                    placeholder = "enter username"
                 />
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                   <Text style={styles.buttonText}>add/remove</Text>
@@ -241,7 +241,7 @@ class FriendsScreen extends React.Component {
                     --------------------------------------------------------
                 </Text>
                 <Text style = {styles.friendNameStyle} >
-                    alexewu
+                  {currentUser && currentUser.email} 
                 </Text>
                 <Text style = {styles.friendNameStyle} >
                     chaitea
