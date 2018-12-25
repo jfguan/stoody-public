@@ -23,7 +23,7 @@ handleSignUp = () => {
 render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up</Text>
+        <Text style={styles.mainFont}>Create an account</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
@@ -43,7 +43,10 @@ render() {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
+        <Button 
+          title="Sign Up" onPress={this.handleSignUp} 
+          style={styles.button}
+        />
         <Button
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate('Login')}
@@ -60,10 +63,21 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   textInput: {
+    fontFamily: 'Futura',
     height: 40,
     width: '80%',
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8
-  }
+  },
+  mainFont: {
+    fontFamily: 'Futura',
+    color: '#3b3b3b',
+    fontSize: 15,
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  button: {
+    fontFamily: 'Futura',
+  },
 })

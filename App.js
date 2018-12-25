@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Ionicons as Icon } from '@expo/vector-icons';
-//import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants, Location, Permissions} from "expo";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
@@ -327,11 +326,11 @@ import Login from './login'
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
-  Loading: {screen: Loading,
-          navigationOptions: {
-            header: null 
-        }
-  },
+//  Loading: {screen: Loading,
+//          navigationOptions: {
+//            header: null 
+//        }
+//  },
   SignUp: {screen: SignUp,
           navigationOptions: {
             header: null 
