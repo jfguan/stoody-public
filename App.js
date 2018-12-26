@@ -32,10 +32,13 @@ class MapScreen extends React.Component {
 		this.state = { isLoading: true, markers: [] };
 	}
 	
+    //fetch marker data every 3 seconds
 	componentDidMount() {
 		this.timer = setInterval(()=> this.fetchMarkerData(), 3000);
 	}
-
+    
+    //pushes data into temp array and in .setState() sets markers as temp
+    //TO-DO: figure out way to retreive autheticated user's data
 	fetchMarkerData() {
 		let temp = [];
 		var dataObject = {};
@@ -48,7 +51,6 @@ class MapScreen extends React.Component {
 				var id = doc.id;
 				temp.push(doc.data())
 			});
-			//console.log(temp);
 			this.setState({
 				isLoading: false,
 				markers: temp
@@ -57,43 +59,46 @@ class MapScreen extends React.Component {
 
 	}
 
+    //places markers on map
 	renderMarkers() {
+        //loops through markers array and adds each marker to the map
 		return this.state.isLoading ? null : this.state.markers.map((marker, index) => {
 			const coords = {
 				latitude: marker.g_loc._lat,
 				longitude: marker.g_loc._long
 			};
 
-			//https://github.com/react-community/react-native-maps/blob/master/docs/marker.md
-      return(
-				<MapView.Marker
-        key={index}
-				coordinate={coords}
-				title={marker.subject}
-				description={marker.description}
-				/>
-			);
-		});
-  }
+            //https://github.com/react-community/react-native-maps/blob/master/docs/marker.md
+            return(
+                <MapView.Marker
+                    key={index}
+                    coordinate={coords}
+                    title={marker.subject}
+                    description={marker.description}
+                />
+            );
+        });
+    }
 
-  render() {
-    return (
-			<MapView
-				style={{
-					flex: 9
-				}}
-				provider = { PROVIDER_GOOGLE }
-				initialRegion={{
-					latitude: 42.277154,
-					longitude: -83.738285, //changed
-					latitudeDelta: 0.01,
-					longitudeDelta: 0.01,
-				}}
-			>
-				{this.renderMarkers()}
-			</MapView>
-    );
-  }
+    //renders a map and places markers on map component
+    render() {
+        return (
+            <MapView
+                style={{
+                    flex: 9
+                }}
+                provider = { PROVIDER_GOOGLE }
+                initialRegion={{
+                    latitude: 42.277154,
+                    longitude: -83.738285,
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01,
+                }}
+            >
+            {this.renderMarkers()}
+            </MapView>
+        );
+    }
 }
 
 
