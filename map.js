@@ -7,9 +7,14 @@ import {createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
+// Initialize Firebase
+import firebaseApp from './Config/FirebaseConfig';
 
+const settings = { timestampsInSnapshots: true};
+const db = firebaseApp.firestore();
+db.settings(settings);
 //======================SCREEN CONTAINING MAP==========================
-class MapScreen extends React.Component {
+export default class MapScreen extends React.Component {
 	
   constructor(props) {
 		super(props);

@@ -3,28 +3,16 @@ import { Ionicons as Icon } from '@expo/vector-icons';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants, Location, Permissions} from "expo";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import MapScreen from './map';
 import {createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import * as firebase from 'firebase';
 import 'firebase/firestore';
 
+import firebaseApp from './Config/FirebaseConfig';
 
-// Initialize Firebase
-const firebaseConfig = {
-	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
-	authDomain: "stoody-7c7e1.firebaseapp.com",
-	databaseURL: "https://stoody-7c7e1.firebaseio.com",
-	projectId: "stoody-7c7e1",
-	storageBucket: "stoody-7c7e1.appspot.com",
-	messagingSenderId: "388094586243"
-};
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
 const settings = { timestampsInSnapshots: true};
-const db = firebaseApp.firestore()
-db.settings(settings)
+const db = firebaseApp.firestore();
+db.settings(settings);
 
-
+import MapScreen from './map'
 
 //======================SCREEN CONTAINING FORM=========================
 class FormScreen extends React.Component {
@@ -136,7 +124,7 @@ class FriendsScreen extends React.Component {
     } 
     
     componentDidMount() {
-      const { currentUser } = firebase.auth()
+      const { currentUser } = firebaseApp.auth()
       this.setState({ 
         ...this.state,
         currentUser: currentUser,

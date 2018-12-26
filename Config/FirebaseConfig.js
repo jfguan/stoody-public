@@ -1,4 +1,4 @@
-import Fb from 'firebase';
+import * as firebase from 'firebase';
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDnnSaCl_BCymYXC6T7GFx5hgGRioa2djg",
@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 
 //their stuff
-const Firebase = Fb.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 //our stuff
 //const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -20,4 +20,4 @@ const Firebase = Fb.initializeApp(firebaseConfig);
 //const db = firebaseApp.firestore()
 //db.settings(settings)
 
-export default Firebase;
+export default firebaseApp;
