@@ -11,7 +11,8 @@ function sleepFor( sleepDuration ){
 export default class Loading extends React.Component { 
 componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      sleepFor(0);
+      //Stalls out loading screen
+      sleepFor(1500);
       this.props.navigation.navigate(user ? 'MainNav' : 'Login')
     })
   }
