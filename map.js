@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Ionicons as Icon } from '@expo/vector-icons';
-import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { Constants, Location, Permissions} from "expo";
+import { StyleSheet, AppRegistry, Platform } from "react-native";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 // Initialize Firebase
