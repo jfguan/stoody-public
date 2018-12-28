@@ -12,8 +12,7 @@ import SignUp from './signup'
 import Login from './login'
 import styles from './styles'
 
-const MainNavigator = createBottomTabNavigator(
-	{
+const MainNavigator = createBottomTabNavigator( {
 	  Map: {
         screen: MapScreen,
         navigationOptions: {
