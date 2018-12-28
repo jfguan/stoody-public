@@ -80,15 +80,8 @@ export default styles = StyleSheet.create({
         marginBottom: 20,
         letterSpacing: 3,
     },
-    navBar: {
-		color: 'green',
-    	flex: 1,
-    	flexDirection: 'row',
-    	alignItems: 'center',
-    	backgroundColor: 'red',
-    	justifyContent: 'center',
-    	tintColor: 'red',
-    },
+    
+    //Login and Sign Up Styling
     textInput: {
         fontFamily: 'Futura',
         fontSize: 15,
