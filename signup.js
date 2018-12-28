@@ -1,6 +1,6 @@
 // SignUp.js
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native'
 import * as firebase from 'firebase';
 
 // Registration screen
@@ -23,13 +23,13 @@ handleSignUp = () => {
 render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.mainFont}>Create an account</Text>
+        <Text style={styles.loginAndSignUp}> join the bald ppl 👽 </Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
           </Text>}
         <TextInput
-          placeholder="Email"
+          placeholder="✉ Email"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={email => this.setState({ email })}
@@ -37,17 +37,26 @@ render() {
         />
         <TextInput
           secureTextEntry
-          placeholder="Password"
+          placeholder="🔒 Password"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button 
-          title="Sign Up" onPress={this.handleSignUp} 
-          style={styles.button}
+        <TextInput
+          secureTextEntry
+          placeholder="🔒 Confirm Password"
+          autoCapitalize="none"
+          style={styles.textInput}
+          //onChangeText={password => this.setState({ password })}
+          //value={this.state.password}
         />
+        <TouchableHighlight style={styles.otherButton} underlayColor='#868c82' onPress={this.handleSignUp}>
+            <Text style={styles.buttonText}> Sign Up </Text>
+        </TouchableHighlight>
         <Button
+          textStyle={{ fontFamily: 'Futura' }}
+          color="gray"
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate('Login')}
         />
@@ -55,29 +64,3 @@ render() {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInput: {
-    fontFamily: 'Futura',
-    height: 40,
-    width: '80%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  },
-  mainFont: {
-    fontFamily: 'Futura',
-    color: '#3b3b3b',
-    fontSize: 15,
-    alignItems: 'center',
-    textAlign: 'center',
-  },
-  button: {
-    fontFamily: 'Futura',
-  },
-})

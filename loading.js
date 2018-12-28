@@ -17,14 +17,7 @@ componentDidMount() {
     })
   }
 
-  render() {
-    return (
-      //Splash screen
-      <ImageBackground source={require('./stoodysplash.png')} style={styles.container} >
-          <Text></Text>
-      </ImageBackground>
-    ) 
-  }
+
 }
 
 const styles = StyleSheet.create({

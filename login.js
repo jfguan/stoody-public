@@ -1,6 +1,6 @@
 // Login.js
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native'
 import * as firebase from 'firebase';
 
 export default class Login extends React.Component {
@@ -18,7 +18,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
+        <Text style={styles.loginAndSignUp}>STOODY</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
@@ -26,7 +26,7 @@ export default class Login extends React.Component {
         <TextInput
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Email"
+          placeholder="✉ Email"
           onChangeText={email => this.setState({ email })}
           value={this.state.email}
         />
@@ -34,31 +34,20 @@ export default class Login extends React.Component {
           secureTextEntry
           style={styles.textInput}
           autoCapitalize="none"
-          placeholder="Password"
+          placeholder="🔒 Password"
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Login" onPress={this.handleLogin} />
+        <TouchableHighlight style={styles.otherButton} underlayColor='#868c82' onPress={this.handleLogin}>
+            <Text style={styles.buttonText}> Login </Text>
+        </TouchableHighlight>
         <Button
-          title="Don't have an account? Sign Up"
+          textStyle={{ fontFamily: 'Futura' }}
+          color="gray"
+          title="Create an account"
           onPress={() => this.props.navigation.navigate('SignUp')}
         />
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  }
-})

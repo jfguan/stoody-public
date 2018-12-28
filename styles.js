@@ -86,4 +86,37 @@ export default styles = StyleSheet.create({
         color: 'white',
         alignSelf: 'center'
     },
+    textInput: {
+        fontFamily: 'Futura',
+        fontSize: 15,
+        height: 40,
+        width: '85%',
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 24,
+        marginTop: 8,
+        paddingLeft: 16,
+    },
+    loginAndSignUp: {
+        fontFamily: 'Futura',
+        color: '#3b3b3b',
+        fontSize: 30,
+        alignItems: 'center',
+        paddingBottom: 15,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    otherButton: {
+        backgroundColor: '#3b3b3b',
+        borderRadius: 24,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: 200,
+        height: 42,
+        padding: 6,
+        marginTop: 14,
+    }
 });

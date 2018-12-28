@@ -42,7 +42,6 @@ export default class FriendsScreen extends React.Component {
                 <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                   <Text style={styles.buttonText}>add/remove</Text>
                 </TouchableHighlight>
-                
                 <View style = {{height:100}}/>
                 
                 <Text style = {styles.friendTitle} >
