@@ -1,9 +1,15 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19004,
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
+<<<<<<< HEAD
   "expoServerNgrokUrl": "https://ce-y6q.alexewu.stoody.exp.direct",
   "packagerNgrokUrl": "https://packager.ce-y6q.alexewu.stoody.exp.direct",
   "ngrokPid": 8919
+=======
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
+>>>>>>> e52dae2d7bfc4d968517adec603dfbfe7b02902c
 }
