@@ -21,6 +21,7 @@ export default class FriendsScreen extends React.Component {
       }
     } 
     
+    //retrieves and sets currentUser state
     componentDidMount() {
       const { currentUser } = firebaseApp.auth()
       this.setState({ 
@@ -29,13 +30,13 @@ export default class FriendsScreen extends React.Component {
       })
     }
     
+
     render() {
         const { currentUser } = this.state
         return (
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
             <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
                 <TextInput style = {styles.addFriendInput}
-//                  onChangeText={(text) => this.setusername(text)} //function that should do something with the input?
                     value={this.state.username}
                     placeholder = "enter username"
                 />
@@ -47,11 +48,9 @@ export default class FriendsScreen extends React.Component {
                 <Text style = {styles.friendTitle} >
                     friends
                 </Text>
-                
                 <Text style = {styles.lineStyle} >
                     --------------------------------------------------------
                 </Text>
-                
                 <Text style = {styles.friendNameStyle} >
                   {currentUser && currentUser.email} 
                 </Text>

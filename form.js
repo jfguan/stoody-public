@@ -23,44 +23,51 @@ export default class FormScreen extends React.Component {
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  //function that changes user to "currently studying"
+  //updates user's location/subject/description in database
   start_stoody = () => {
  	this._getLocationAsync();
  	var users = db.collection('users');
- 	console.log("this.state");
- 	console.log(this.state);
+    //crashes code
  	var new_user = users.doc("Jeff Guan").set({
     subject: this.state.subject, 
     description: this.state.description, 
-    g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+    g_loc: new firebaseApp.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
-
+  
+  //function that changes user to "not studying"
+  //sends user to antartica
   stop_stoody = () => {
     var users = db.collection('users');
     var new_user = users.doc("Jeff Guan").set({
-    g_loc: new firebase.firestore.GeoPoint(-90, 0)});
+    g_loc: new firebaseApp.firestore.GeoPoint(-90, 0)});
   }
 
+  //called by submit button 
+  //modifies user's state to studying/not studying by respective functions
   handleSubmit = () => {
     if(this.state.confirmed){
-    	this.setState({
-        ...this.state,
-      confirmed : false,
-      text: "Confirm"
+      this.setState({
+          ...this.state,
+          confirmed : false,
+          text: "Confirm"
       }, this.stop_stoody);
     }
     else{
       this.setState({
-        ...this.state,
-      confirmed: true,
-      text: "Delete"
+          ...this.state,
+          confirmed: true,
+          text: "Delete"
       }, this.start_stoody);
     }
   }
 
+  //gets user's location when screen loads
   componentWillMount() {
     this._getLocationAsync();
   }
 
+  //gets users location
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
@@ -70,7 +77,6 @@ export default class FormScreen extends React.Component {
     }
 
     let g_loc = await Location.getCurrentPositionAsync({});
-    console.log(g_loc);
     this.setState({ g_loc });
   };
 
@@ -78,8 +84,8 @@ export default class FormScreen extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
         <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
+            //subject input field
             <TextInput style = {styles.usernameInput} 
-                ref= {(el) => { this.subject = el; }}
                 onChangeText={(subject) => this.setState({subject})}
                 value={this.state.subject}
                 placeholder='subject'
@@ -88,14 +94,15 @@ export default class FormScreen extends React.Component {
             <Text style = {styles.lineStyle} >
                 --------------------------------------------------------
             </Text>
+            //description input field
             <TextInput style = {styles.descriptionInput}
                 placeholder="description: location, time, etc."
-                ref= {(el) => { this.description = el; }}
                 onChangeText={(description) => this.setState({description})}
                 multiline={true}
                 maxLength = {40}
                 numberOfLines={5}
             />
+            //confirm button
             <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
                 <Text style={styles.buttonText}>confirm</Text>
             </TouchableHighlight>
