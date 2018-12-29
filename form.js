@@ -15,7 +15,7 @@ export default class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
         name: "",
-	  	subject: "",
+	  	  subject: "",
         description: "",
         g_loc: null,
         confirmed: false,
@@ -29,10 +29,11 @@ export default class FormScreen extends React.Component {
  	this._getLocationAsync();
  	var users = db.collection('users');
     //crashes code
+    console.log(this.state.g_loc);
  	var new_user = users.doc("Jeff Guan").set({
     subject: this.state.subject, 
     description: this.state.description, 
-    g_loc: new firebaseApp.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+    g_loc: new firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
   
   //function that changes user to "not studying"
