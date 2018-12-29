@@ -23,6 +23,7 @@ export default class FormScreen extends React.Component {
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  //https://stackoverflow.com/questions/47308159/whats-the-best-way-to-check-if-a-firestore-record-exists-if-its-path-is-known
   //function that changes user to "currently studying"
   //updates user's location/subject/description in database
   start_stoody = () => {
@@ -30,7 +31,7 @@ export default class FormScreen extends React.Component {
  	var users = db.collection('users');
     //crashes code
     console.log(this.state.g_loc);
- 	var new_user = users.doc("Jeff Guan").update({
+ 	var new_user = users.doc("bob").update({
     subject: this.state.subject, 
     description: this.state.description, 
     g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
@@ -40,7 +41,7 @@ export default class FormScreen extends React.Component {
   //sends user to antartica
   stop_stoody = () => {
     var users = db.collection('users');
-    var new_user = users.doc("Jeff Guan").update({
+    var new_user = users.doc("bob").update({
     g_loc: new firebase.firestore.GeoPoint(-90, 0)});
   }
 
