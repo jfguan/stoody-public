@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants, Location, Permissions} from "expo";
-import 'firebase/firestore';
+import * as firebase from 'firebase';
 import firebaseApp from './Config/FirebaseConfig';
 import styles from './styles'
 
@@ -30,18 +30,18 @@ export default class FormScreen extends React.Component {
  	var users = db.collection('users');
     //crashes code
     console.log(this.state.g_loc);
- 	var new_user = users.doc("Jeff Guan").set({
+ 	var new_user = users.doc("Jeff Guan").update({
     subject: this.state.subject, 
     description: this.state.description, 
-    g_loc: new firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+    g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
   }
   
   //function that changes user to "not studying"
   //sends user to antartica
   stop_stoody = () => {
     var users = db.collection('users');
-    var new_user = users.doc("Jeff Guan").set({
-    g_loc: new firebaseApp.firestore.GeoPoint(-90, 0)});
+    var new_user = users.doc("Jeff Guan").update({
+    g_loc: new firebase.firestore.GeoPoint(-90, 0)});
   }
 
   //called by submit button 
