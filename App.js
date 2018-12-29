@@ -7,10 +7,9 @@ import MapScreen from './map';
 import FormScreen from './form';
 import FriendsScreen from './friends';
 
-import Loading from './loading'
-import SignUp from './signup'
-import Login from './login'
-import styles from './styles'
+import Loading from './loading';
+import SignUp from './signup';
+import Login from './login';
 
 const MainNavigator = createBottomTabNavigator( {
 	  Map: {
@@ -67,6 +66,11 @@ const MainNavigator = createBottomTabNavigator( {
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
+  MainNav: {screen: MainNavigator,
+        navigationOptions: {
+            header: null 
+        }
+  },
   Login: {screen: Login,
           navigationOptions: {
             header: null 
@@ -74,11 +78,6 @@ const App = createStackNavigator({
   },
   SignUp: {screen: SignUp,
           navigationOptions: {
-            header: null 
-        }
-  },
-  MainNav: {screen: MainNavigator,
-        navigationOptions: {
             header: null 
         }
   },

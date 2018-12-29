@@ -82,6 +82,11 @@ export default styles = StyleSheet.create({
     },
     
     //Login and Sign Up Styling
+    errorMsgStyle: { //friends, form
+        color: '#3b3b3b',
+        fontFamily: 'Futura',
+        fontSize: 12,
+    },
     textInput: {
         fontFamily: 'Futura',
         fontSize: 15,
