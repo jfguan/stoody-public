@@ -66,13 +66,13 @@ const MainNavigator = createBottomTabNavigator( {
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
-  MainNav: {screen: MainNavigator,
-        navigationOptions: {
+  Login: {screen: Login,
+          navigationOptions: {
             header: null 
         }
   },
-  Login: {screen: Login,
-          navigationOptions: {
+  MainNav: {screen: MainNavigator,
+        navigationOptions: {
             header: null 
         }
   },

@@ -14,51 +14,79 @@ export default class FormScreen extends React.Component {
   constructor(props) {
 	  super(props);
 	  this.state = {
-        name: "",
+        currentUser: null,
 	  	  subject: "",
         description: "",
         g_loc: null,
-        confirmed: false,
+        stoodying: false,
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  //Get user from auth and set in this.state
+  componentDidMount() {
+      const { currentUser } = firebaseApp.auth()
+      this.setState({ 
+        ...this.state,
+        currentUser: currentUser,
+      })
+  }
+
+  //https://medium.com/react-native-training/firebase-sdk-with-firestore-for-react-native-apps-in-2018-aa89a67d6934
   //https://stackoverflow.com/questions/47308159/whats-the-best-way-to-check-if-a-firestore-record-exists-if-its-path-is-known
+  
   //function that changes user to "currently studying"
   //updates user's location/subject/description in database
   start_stoody = () => {
- 	this._getLocationAsync();
- 	var users = db.collection('users');
-    //crashes code
-    console.log(this.state.g_loc);
- 	var new_user = users.doc("bob").update({
-    subject: this.state.subject, 
-    description: this.state.description, 
-    g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)});
+    this._getLocationAsync();
+    const { currentUser } = this.state;
+    console.log("start_stoody");
+    var user = db.collection('users').doc(currentUser.email)
+    var getDoc = user.get()
+    .then(doc => {
+        if (!doc.exists) {
+            console.log('User not in DB, creating user?');
+             db.collection('users').doc(currentUser.email).set({
+              subject: this.state.subject, 
+              description: this.state.description, 
+              g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
+            })
+        } else {
+          user.update({
+            subject: this.state.subject, 
+            description: this.state.description, 
+            g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)
+          });
+        }
+    })
+    .catch(err => {
+        console.log('Error getting document', err);
+    });
+
   }
   
   //function that changes user to "not studying"
   //sends user to antartica
   stop_stoody = () => {
-    var users = db.collection('users');
-    var new_user = users.doc("bob").update({
+    const { currentUser } = this.state;
+    db.collection('users').doc(currentUser.email).update({
     g_loc: new firebase.firestore.GeoPoint(-90, 0)});
   }
 
   //called by submit button 
   //modifies user's state to studying/not studying by respective functions
   handleSubmit = () => {
-    if(this.state.confirmed){
+    if(this.state.stoodying){
       this.setState({
           ...this.state,
-          confirmed : false,
+          stoodying : false,
           text: "Confirm"
       }, this.stop_stoody);
     }
     else{
       this.setState({
           ...this.state,
-          confirmed: true,
+          stoodying: true,
           text: "Delete"
       }, this.start_stoody);
     }
