@@ -11,10 +11,9 @@ const db = firebaseApp.firestore();
 db.settings(settings);
 //======================SCREEN CONTAINING MAP==========================
 export default class MapScreen extends React.Component {
-	
-  constructor(props) {
-		super(props);
-		this.state = { isLoading: true, markers: [] };
+    constructor(props) {
+        super(props);
+        this.state = { isLoading: true, markers: [] };
 	}
 	
     //fetch marker data every 3 seconds
