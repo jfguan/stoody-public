@@ -71,13 +71,13 @@ const App = createStackNavigator({
             header: null 
         }
   },
-  MainNav: {screen: MainNavigator,
-        navigationOptions: {
+  SignUp: {screen: SignUp,
+          navigationOptions: {
             header: null 
         }
   },
-  SignUp: {screen: SignUp,
-          navigationOptions: {
+  MainNav: {screen: MainNavigator,
+        navigationOptions: {
             header: null 
         }
   },

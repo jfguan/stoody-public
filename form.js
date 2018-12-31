@@ -50,12 +50,14 @@ export default class FormScreen extends React.Component {
               subject: this.state.subject, 
               description: this.state.description, 
               g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
+              online: true,
             })
         } else {
           user.update({
             subject: this.state.subject, 
             description: this.state.description, 
-            g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude)
+            g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
+            online: true,
           });
         }
     })
@@ -70,7 +72,9 @@ export default class FormScreen extends React.Component {
   stop_stoody = () => {
     const { currentUser } = this.state;
     db.collection('users').doc(currentUser.email).update({
-    g_loc: new firebase.firestore.GeoPoint(-90, 0)});
+      g_loc: new firebase.firestore.GeoPoint(-90, 0),
+      online: false,
+    });
   }
 
   //called by submit button 
@@ -117,7 +121,6 @@ export default class FormScreen extends React.Component {
             //subject input field
             <TextInput style = {styles.usernameInput} 
                 onChangeText={(subject) => this.setState({subject})}
-                value={this.state.subject}
                 placeholder='subject'
                 returnKeyType='done'
             />
