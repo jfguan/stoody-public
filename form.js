@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlig
 import { Constants, Location, Permissions} from "expo";
 import * as firebase from 'firebase';
 import firebaseApp from './Config/FirebaseConfig';
-import styles from './styles'
+import styles from './styles';
 
 const settings = { timestampsInSnapshots: true};
 const db = firebaseApp.firestore();
@@ -116,31 +116,31 @@ export default class FormScreen extends React.Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
-        <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
-            //subject input field
-            <TextInput style = {styles.usernameInput} 
-                onChangeText={(subject) => this.setState({subject})}
-                placeholder='subject'
-                returnKeyType='done'
-            />
-            <Text style = {styles.lineStyle} >
-                --------------------------------------------------------
-            </Text>
-            //description input field
-            <TextInput style = {styles.descriptionInput}
-                placeholder="description: location, time, etc."
-                onChangeText={(description) => this.setState({description})}
-                multiline={true}
-                maxLength = {40}
-                numberOfLines={5}
-            />
-            //confirm button
-            <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
-                <Text style={styles.buttonText}>confirm</Text>
-            </TouchableHighlight>
-        </View>
-      </TouchableWithoutFeedback> 
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: '#ede6cb'}}>
+                <View style={{flex: 1, width: 400, height: 50}}/>
+                <View style={{flex: 3, width: 400, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                    <TextInput 
+                        style={styles.titleInput}
+                        onChangeText={(subject) => this.setState({subject})}
+                        placeholder='s u b j e c t'
+                        returnKeyType='done'
+                    />
+                </View>
+                <TextInput
+                    style={styles.descriptionInput}
+                    placeholder="add more details..."
+                    onChangeText={(description) => this.setState({description})}
+                    multiline={true}
+                    numberOfLines={5}
+                />
+                <View style={{flex:3, width: 400, height: 50}}>
+                    <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
+                        <Text style={styles.buttonText}>confirm</Text>
+                    </TouchableHighlight>
+                </View>
+            </View>
+        </TouchableWithoutFeedback> 
     );
   }
 }

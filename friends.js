@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  ListView
+} from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
-import styles from './styles'
+//import styles from './styles'
 
 const settings = { timestampsInSnapshots: true};
 const db = firebaseApp.firestore();
 db.settings(settings);
 
-//======================SCREEN CONTAINING FRIENDS==========================
 export default class FriendsScreen extends React.Component {
     //TODO ADD REMOVE FRIENDS
 
@@ -36,13 +43,22 @@ export default class FriendsScreen extends React.Component {
     }
     
     constructor(props) {
-    super(props)
-      this.state = { 
-          addUserByEmail: "",
-          currentUser: null
-      }
-    } 
-    
+        super(props);
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            addUserByEmail: "",
+            currentUser: null,
+            dataSource: ds.cloneWithRows([
+                {image: "https://img.icons8.com/color/300/000000/user-male.png", username:"Doris White"},
+                {image: "https://img.icons8.com/color/300/000000/user.png", username:"Ryan James"},
+                {image: "https://img.icons8.com/color/300/000000/morty-smith.png", username:"Gregory Moore"},
+                {image: "https://img.icons8.com/color/300/000000/old-man-skin-type-3.png", username:"Dennis Simmons"},
+                {image: "https://img.icons8.com/color/300/000000/circled-user-female-skin-type-1-2.png", username:"Stephanie Ross"},
+                {image: "https://img.icons8.com/color/300/000000/kawaii.png", username:"Phillip King"},
+            ]),
+        };
+    }
+
     //retrieves and sets currentUser state
     componentDidMount() {
       const { currentUser } = firebaseApp.auth()
@@ -51,45 +67,91 @@ export default class FriendsScreen extends React.Component {
         currentUser: currentUser,
       })
     }
-    
 
     render() {
         const { currentUser } = this.state
         return (
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible = {false}>
-            <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center'}}>
-                <TextInput style = {styles.addFriendInput}
-                    onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
-                    placeholder = "enter friend's email"
-                />
-                <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
-                  <Text style={styles.buttonText}>add/remove</Text>
-                </TouchableHighlight>
-                <View style = {{height:100}}/>
-                
-                <Text style = {styles.friendTitle} >
-                    friends
-                </Text>
-                <Text style = {styles.lineStyle} >
-                    --------------------------------------------------------
-                </Text>
-                <Text style = {styles.friendNameStyle} >
-                  {currentUser && currentUser.email} 
-                </Text>
-                
-                <Text style = {styles.friendNameStyle} >
-                    chaitea
-                </Text>
-                
-                <Text style = {styles.friendNameStyle} >
-                    erchen
-                </Text>
-                
-                <Text style = {styles.friendNameStyle} >
-                    gadkari
-                </Text>
+        <View style={styles.container}>
+            <View style={{width: 400, height: 50, backgroundColor: '#408e6c'}}/>
+
+            <View style={styles.header}>
+                <View style={styles.headerContent}>
+                    <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                    <Text style={styles.name}>{currentUser && currentUser.email} </Text>
+                </View>
             </View>
-          </TouchableWithoutFeedback>
+
+            <View style={styles.body}>
+                <ListView style={styles.container} enableEmptySections={true}
+                  dataSource={this.state.dataSource}
+                  renderRow={(user) => {
+                    return (
+                      <TouchableOpacity>
+                        <View style={styles.box}>
+                          <Image style={styles.image} source={{uri: user.image}}/>
+                           <Text style={styles.username}>{user.username}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    )
+                }}/>
+            </View>
+        </View>
         );
+        }
     }
-}
+
+const styles = StyleSheet.create({
+    header:{
+        backgroundColor: "#408e6c",
+    },
+    headerContent:{
+        padding:20,
+        alignItems: 'center',
+    },
+    avatar: {
+        width: 130,
+        height: 130,
+        borderRadius: 63,
+        borderWidth: 4,
+        borderColor: "#FFFFFF",
+        marginBottom:10,
+    },
+    image:{
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        borderColor: 'black',
+    },
+    name:{
+        fontSize:22,
+        fontFamily: 'Futura',
+        color:"#FFFFFF",
+        fontWeight:'600',
+    },
+    body: {
+        padding:30,
+        backgroundColor :"#E6E6FA",
+    },
+    box: {
+        padding:5,
+        marginTop:5,
+        marginBottom:5,
+        backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
+        shadowColor: 'black',
+        shadowOpacity: .2,
+        shadowOffset: {
+            height:1,
+            width:-2
+        },
+        elevation:2
+    },
+    username:{
+        color: "#20B2AA",
+        fontFamily: 'Futura',
+        fontSize:22,
+        alignSelf:'center',
+        marginLeft:10
+    }
+});
+ 

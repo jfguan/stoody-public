@@ -16,6 +16,7 @@ export default styles = StyleSheet.create({
         marginBottom: 70,
         alignSelf: 'center',
         justifyContent: 'center',
+        marginTop: 30,
         width: 250,
         height: 42,
     },
@@ -34,18 +35,28 @@ export default styles = StyleSheet.create({
         fontSize: 31,
         marginBottom: -8,
     },
-    descriptionInput: { //form
+    titleInput: { //form
+        fontFamily: 'Futura',
         justifyContent: 'center',
         alignItems: 'center',
-        color: '#5d6777',
-        fontFamily: 'Futura',
-        marginTop: 80,
-        marginBottom: 175,
-        fontSize: 23,
-        maxHeight: 275,
         textAlign: 'center',
-        width: 320,
+        fontSize: 31,
+        borderBottomColor: 'black',
+        borderBottomWidth: 3,
+        width: 300,
     },
+    descriptionInput: {
+        fontFamily: 'Futura',
+        textAlign: 'center',
+        flex:9,
+        fontSize: 20,
+        width: 300,
+        backgroundColor: 'white',
+        borderRadius: 30,
+        padding: 15,
+        paddingTop: 20,
+    },
+    
     scrollContainer: { //form
         //justifyContent: 'center',
         //padding: 20,
@@ -119,5 +130,5 @@ export default styles = StyleSheet.create({
         height: 42,
         padding: 6,
         marginTop: 14,
-    }
+    },
 });

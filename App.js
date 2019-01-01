@@ -12,23 +12,20 @@ import SignUp from './signup';
 import Login from './login';
 
 const MainNavigator = createBottomTabNavigator( {
-	  Map: {
+    Map: {
         screen: MapScreen,
         navigationOptions: {
-            title: 'Map',
+            tabBarLabel: 'Map',
             tabBarIcon: ({ tintColor, focused }) => (
               <Icon
                 name="ios-map"
                 size={24}
-                style={{ 
-                    justifyContent: 'center',
-                    color: tintColor,
-                    paddingTop: 5 }}
+                style={{ color: tintColor, paddingTop: 5 }}
               />
-            ),
-        },
-      },
-	  Form: { 
+            )
+        }
+    },
+    Form: { 
         screen: FormScreen, 
         navigationOptions: {
             tabBarLabel: 'Form',
@@ -36,15 +33,12 @@ const MainNavigator = createBottomTabNavigator( {
               <Icon
                 name="ios-folder"
                 size={24}
-                style={{ 
-                    color: tintColor,
-                    paddingTop: 5 
-                }}
+                style={{ color: tintColor, paddingTop: 5 }}
               />
-            ),
-        },
-	  },
-	  Friends: {
+            )
+        }
+    },
+    Friends: {
         screen: FriendsScreen,
         navigationOptions: {
             tabBarLabel: 'Friends',
@@ -52,17 +46,26 @@ const MainNavigator = createBottomTabNavigator( {
               <Icon
                 name="ios-people"
                 size={24}
-                style={{ 
-                    color: tintColor,
-                    paddingTop: 5 
-                }}
+                style={{ color: tintColor, paddingTop: 5 }}
               />
-            ),
-        },
-	  },
-	},
-
-);
+            )
+        }
+    }
+}, {
+    initialRouteName: 'Map',
+    order: ['Map', 'Form', 'Friends'],
+    //navigation for complete tab navigator
+    navigationOptions: {
+        tabBarVisible: true
+    },
+    tabBarOptions: {
+        activeTintColor: 'white',
+        inactiveTintColor: '#72c19f',
+        style: {
+            backgroundColor: '#408e6c' // TabBar background
+        }
+    }
+});
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
