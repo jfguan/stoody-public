@@ -15,7 +15,7 @@ export default class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
         currentUser: null,
-	  	  subject: "",
+	  	subject: "",
         description: "",
         g_loc: null,
         stoodying: false,

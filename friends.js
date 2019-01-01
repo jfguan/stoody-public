@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  ListView
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    ScrollView,
+    TouchableOpacity,
+    ListView,
+    TextInput
 } from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
@@ -48,6 +49,7 @@ export default class FriendsScreen extends React.Component {
         this.state = {
             addUserByEmail: "",
             currentUser: null,
+            addFriend: "",
             dataSource: ds.cloneWithRows([
                 {image: "https://img.icons8.com/color/300/000000/user-male.png", username:"Doris White"},
                 {image: "https://img.icons8.com/color/300/000000/user.png", username:"Ryan James"},
@@ -80,21 +82,37 @@ export default class FriendsScreen extends React.Component {
                     <Text style={styles.name}>{currentUser && currentUser.email} </Text>
                 </View>
             </View>
-
+            
             <View style={styles.body}>
+                //text input to add friends
+                <TouchableOpacity>
+                    <View style={styles.box}>
+                        <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
+                        <TextInput 
+                            style={styles.addFriend}
+                            onChangeText={(addFriend) => this.setState({addFriend})}
+                            placeholder='add friend'
+                            returnKeyType='done'
+                        />
+                    </View>
+                </TouchableOpacity>
                 <ListView style={styles.container} enableEmptySections={true}
-                  dataSource={this.state.dataSource}
-                  renderRow={(user) => {
-                    return (
-                      <TouchableOpacity>
-                        <View style={styles.box}>
-                          <Image style={styles.image} source={{uri: user.image}}/>
-                           <Text style={styles.username}>{user.username}</Text>
-                        </View>
-                      </TouchableOpacity>
-                    )
-                }}/>
+                    dataSource={this.state.dataSource}
+                    renderRow={(user) => {
+                        return (
+                          <TouchableOpacity>
+                            <View style={styles.box}>
+                                <Image style={styles.image} source={{uri: user.image}}/>
+                                <Text style={styles.username}>{user.username}</Text>
+                                <View style={styles.rightContainer}>
+                                    <Text style={styles.status}>inactive</Text>
+                                </View>
+                            </View>
+                          </TouchableOpacity>
+                        )
+                    }}/>
             </View>
+
         </View>
         );
         }
@@ -107,6 +125,13 @@ const styles = StyleSheet.create({
     headerContent:{
         padding:20,
         alignItems: 'center',
+    },
+    addFriend: {
+        fontFamily: 'Futura',
+        color:"#c4c4c4",
+        fontSize:15,
+        alignSelf:'center',
+        marginLeft:10
     },
     avatar: {
         width: 130,
@@ -139,6 +164,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         flexDirection: 'row',
         shadowColor: 'black',
+        alignItems: 'center',
         shadowOpacity: .2,
         shadowOffset: {
             height:1,
@@ -146,12 +172,25 @@ const styles = StyleSheet.create({
         },
         elevation:2
     },
-    username:{
+    username: {
         color: "#20B2AA",
         fontFamily: 'Futura',
-        fontSize:22,
+        fontSize:15,
         alignSelf:'center',
         marginLeft:10
+    },
+    rightContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    status: {
+        color: "#d5dce8",
+        fontFamily: 'Futura',
+        fontSize: 12,
+        flexDirection: 'row',
+        marginRight: 5,
     }
 });
  

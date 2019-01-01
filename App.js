@@ -69,21 +69,21 @@ const MainNavigator = createBottomTabNavigator( {
 
 //https://medium.com/react-native-training/react-native-firebase-authentication-7652e1d2c8a2
 const App = createStackNavigator({
-  Login: {screen: Login,
-          navigationOptions: {
-            header: null 
-        }
-  },
-  SignUp: {screen: SignUp,
-          navigationOptions: {
-            header: null 
-        }
-  },
-  MainNav: {screen: MainNavigator,
+    MainNav: {screen: MainNavigator,
         navigationOptions: {
             header: null 
         }
-  },
+    },
+    Login: {screen: Login,
+        navigationOptions: {
+            header: null 
+        }
+    },
+    SignUp: {screen: SignUp,
+        navigationOptions: {
+            header: null 
+        }
+    },
 });
 
 export default App;
