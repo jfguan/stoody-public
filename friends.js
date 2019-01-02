@@ -74,51 +74,51 @@ export default class FriendsScreen extends React.Component {
     render() {
         const { currentUser } = this.state
         return (
-        <View style={styles.container}>
-            <View style={{width: Dimensions.get('window').width, height: 50, backgroundColor: '#408e6c'}}/>
+          <View style={styles.container}>
+              <View style={{width: Dimensions.get('window').width, height: 50, backgroundColor: '#408e6c'}}/>
 
-            <View style={styles.header}>
-                <View style={styles.headerContent}>
-                    <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
-                    <Text style={styles.name}>{currentUser && currentUser.email} </Text>
-                </View>
-            </View>
-            
-            <View style={styles.body}>
-                //text input to add friends
-                <TouchableOpacity>
-                    <View style={styles.box}>
-                        <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
-                        <TextInput 
-                            style={styles.addFriend}
-                            onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
-                            placeholder='add friend'
-                            returnKeyType='done'
-                        />
-                    </View>
-                </TouchableOpacity>
-                <ListView style={styles.container} enableEmptySections={true}
-                    dataSource={this.state.dataSource}
-                    renderRow={(user) => {
-                        return (
-                          <TouchableOpacity>
-                            <View style={styles.box}>
-                                <Image style={styles.image} source={{uri: user.image}}/>
-                                <Text style={styles.username}>{user.username}</Text>
-                                <View style={styles.rightContainer}>
-                                    <Text style={styles.status}>inactive</Text>
-                                </View>
-                            </View>
-                          </TouchableOpacity>
-                        )
-                    }}
-                />
-            </View>
+              <View style={styles.header}>
+                  <View style={styles.headerContent}>
+                      <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                      <Text style={styles.name}>{currentUser && currentUser.email} </Text>
+                  </View>
+              </View>
+              
+              <View style={styles.body}>
+                  //text input to add friends
+                  <TouchableOpacity>
+                      <View style={styles.box}>
+                          <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
+                          <TextInput 
+                              style={styles.addFriend}
+                              onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
+                              placeholder='add friend'
+                              returnKeyType='done'
+                          />
+                      </View>
+                  </TouchableOpacity>
+                  <ListView style={styles.container} enableEmptySections={true}
+                      dataSource={this.state.dataSource}
+                      renderRow={(user) => {
+                          return (
+                            <TouchableOpacity>
+                              <View style={styles.box}>
+                                  <Image style={styles.image} source={{uri: user.image}}/>
+                                  <Text style={styles.username}>{user.username}</Text>
+                                  <View style={styles.rightContainer}>
+                                      <Text style={styles.status}>inactive</Text>
+                                  </View>
+                              </View>
+                            </TouchableOpacity>
+                          )
+                      }}
+                  />
+              </View>
 
-        </View>
+          </View>
         );
-        }
     }
+}
 
 const styles = StyleSheet.create({
     header:{
