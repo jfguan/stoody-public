@@ -7,7 +7,8 @@ import {
     ScrollView,
     TouchableOpacity,
     ListView,
-    TextInput
+    TextInput,
+    Dimensions,
 } from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
@@ -74,7 +75,7 @@ export default class FriendsScreen extends React.Component {
         const { currentUser } = this.state
         return (
         <View style={styles.container}>
-            <View style={{width: 400, height: 50, backgroundColor: '#408e6c'}}/>
+            <View style={{width: Dimensions.get('window').width, height: 50, backgroundColor: '#408e6c'}}/>
 
             <View style={styles.header}>
                 <View style={styles.headerContent}>
