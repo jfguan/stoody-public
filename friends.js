@@ -90,7 +90,7 @@ export default class FriendsScreen extends React.Component {
                         <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
                         <TextInput 
                             style={styles.addFriend}
-                            onChangeText={(addFriend) => this.setState({addFriend})}
+                            onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
                             placeholder='add friend'
                             returnKeyType='done'
                         />
@@ -110,7 +110,8 @@ export default class FriendsScreen extends React.Component {
                             </View>
                           </TouchableOpacity>
                         )
-                    }}/>
+                    }}
+                />
             </View>
 
         </View>
