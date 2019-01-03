@@ -22,7 +22,7 @@ export default class FriendsScreen extends React.Component {
     //TODO ADD REMOVE FRIENDS
 
     handleSubmit = () => {
-      const { currentUser } = this.state
+      const { currentUser } = this.state;
       //Look for if 'other user' friendReq'd 'user'
       const usersRef = db.collection('users');
       friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
@@ -52,23 +52,41 @@ export default class FriendsScreen extends React.Component {
             currentUser: null,
             addFriend: "",
             dataSource: ds.cloneWithRows([
-                {image: "https://img.icons8.com/color/300/000000/user-male.png", username:"Doris White"},
-                {image: "https://img.icons8.com/color/300/000000/user.png", username:"Ryan James"},
-                {image: "https://img.icons8.com/color/300/000000/morty-smith.png", username:"Gregory Moore"},
-                {image: "https://img.icons8.com/color/300/000000/old-man-skin-type-3.png", username:"Dennis Simmons"},
-                {image: "https://img.icons8.com/color/300/000000/circled-user-female-skin-type-1-2.png", username:"Stephanie Ross"},
-                {image: "https://img.icons8.com/color/300/000000/kawaii.png", username:"Phillip King"},
+                {image: "https://img.icons8.com/ios/50/000000/crow.png", username:"Loading"},
             ]),
         };
     }
 
+    getFriendsList(){
+      const { currentUser } = this.state;
+      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      let friendsArr = [];
+
+      var friendsRef = db.collection('users').doc(currentUser.email).collection('friends');
+      var query = friendsRef.get()
+      .then(snapshot => {
+          snapshot.forEach(doc => {
+              console.log(doc.id);
+              friendsArr.push(
+                {image: "https://img.icons8.com/ios/50/000000/crow.png", username: doc.id},
+              )
+          });
+          console.log(friendsArr);
+          this.setState({ 
+            ...this.state,
+            dataSource: ds.cloneWithRows(friendsArr)
+          })
+      })
+      console.log(friendsArr);
+
+    }
     //retrieves and sets currentUser state
     componentDidMount() {
       const { currentUser } = firebaseApp.auth()
       this.setState({ 
         ...this.state,
         currentUser: currentUser,
-      })
+      }, this.getFriendsList);
     }
 
     render() {
