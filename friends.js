@@ -19,7 +19,19 @@ const db = firebaseApp.firestore();
 db.settings(settings);
 
 export default class FriendsScreen extends React.Component {
-    //TODO ADD REMOVE FRIENDS
+    constructor(props) {
+        super(props);
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            addUserByEmail: "",
+            currentUser: null,
+            addFriend: "",
+            dataSource: ds.cloneWithRows([
+                {image: "https://img.icons8.com/ios/50/000000/crow.png", username:"Loading"},
+            ]),
+        };
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
     handleSubmit = () => {
       const { currentUser } = this.state;
@@ -42,19 +54,6 @@ export default class FriendsScreen extends React.Component {
             }
       });
       console.log(this.state.addUserByEmail);
-    }
-    
-    constructor(props) {
-        super(props);
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-            addUserByEmail: "",
-            currentUser: null,
-            addFriend: "",
-            dataSource: ds.cloneWithRows([
-                {image: "https://img.icons8.com/ios/50/000000/crow.png", username:"Loading"},
-            ]),
-        };
     }
 
     getFriendsList(){
@@ -104,7 +103,7 @@ export default class FriendsScreen extends React.Component {
               
               <View style={styles.body}>
                   //text input to add friends
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={this.handleSubmit}>
                       <View style={styles.box}>
                           <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
                           <TextInput 
