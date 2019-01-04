@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
-//import styles from './styles'
 
 const settings = { timestampsInSnapshots: true};
 const db = firebaseApp.firestore();
@@ -31,6 +30,16 @@ export default class FriendsScreen extends React.Component {
             ]),
         };
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    //retrieves and sets currentUser state
+    componentDidMount() {
+      const { currentUser } = firebaseApp.auth()
+      this.setState({ 
+        ...this.state,
+        currentUser: currentUser,
+      }, this.getFriendsList);
+      this.timer = setInterval(()=> this.getFriendsList(), 3000);
     }
 
     handleSubmit = () => {
@@ -78,14 +87,6 @@ export default class FriendsScreen extends React.Component {
       })
       console.log(friendsArr);
 
-    }
-    //retrieves and sets currentUser state
-    componentDidMount() {
-      const { currentUser } = firebaseApp.auth()
-      this.setState({ 
-        ...this.state,
-        currentUser: currentUser,
-      }, this.getFriendsList);
     }
 
     render() {
