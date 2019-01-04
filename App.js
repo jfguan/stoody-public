@@ -71,17 +71,18 @@ const MainNavigator = createBottomTabNavigator( {
 const App = createStackNavigator({
     Login: {screen: Login,
         navigationOptions: {
-            header: null 
+            header: null,
         }
     },
     SignUp: {screen: SignUp,
         navigationOptions: {
-            header: null 
+            header: null,
         }
     },
     MainNav: {screen: MainNavigator,
         navigationOptions: {
-            header: null 
+            header: null,
+            //gesturesEnabled: false,
         }
     },
 });
