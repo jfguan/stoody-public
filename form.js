@@ -15,7 +15,7 @@ export default class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
         currentUser: null,
-	  	subject: "",
+	  	  subject: "",
         description: "",
         g_loc: null,
         stoodying: false,
@@ -50,14 +50,14 @@ export default class FormScreen extends React.Component {
               subject: this.state.subject, 
               description: this.state.description, 
               g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
-              online: true,
+              stoodying: true,
             })
         } else {
           user.update({
             subject: this.state.subject, 
             description: this.state.description, 
             g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
-            online: true,
+            stoodying: false,
           });
         }
     })
