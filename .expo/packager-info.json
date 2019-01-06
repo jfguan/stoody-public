@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 1892,
-  "expoServerNgrokUrl": "https://ce-y6q.anonymous.stoody.exp.direct",
-  "packagerNgrokUrl": "https://packager.ce-y6q.anonymous.stoody.exp.direct",
-  "ngrokPid": 15004
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

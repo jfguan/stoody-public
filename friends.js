@@ -13,7 +13,7 @@ import {
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
 
-const settings = { timestampsInSnapshots: true};
+const settings = { timestampsInSnapshots: true };
 const db = firebaseApp.firestore();
 db.settings(settings);
 
