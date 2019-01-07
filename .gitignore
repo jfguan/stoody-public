@@ -91,6 +91,7 @@ shellAppWorkspaces
 
 # Expo Client builds
 /client-builds
+.expo/packager-info.json
 
 # Expo web env
 .env.local
