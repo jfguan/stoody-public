@@ -4,7 +4,17 @@ import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'r
 import * as firebase from 'firebase';
 
 export default class Login extends React.Component {
-  state = { email: '', password: '', errorMessage: null }
+  state = { 
+    email: '', 
+    password: '', 
+    errorMessage: null 
+  }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.props.navigation.navigate(user ? 'MainNav' : 'Login')
+    })
+  }
   
   handleLogin = () => {
     const { email, pasword } = this.state

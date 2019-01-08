@@ -13,7 +13,7 @@ import {
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
 
-const settings = { timestampsInSnapshots: true};
+const settings = { timestampsInSnapshots: true };
 const db = firebaseApp.firestore();
 db.settings(settings);
 
@@ -78,6 +78,7 @@ export default class FriendsScreen extends React.Component {
       .then(snapshot => {
           snapshot.forEach(doc => {
               console.log(doc.id);
+
               friendsArr.push(
                 {image: "https://img.icons8.com/ios/50/000000/crow.png", username: doc.id},
               )
@@ -115,6 +116,7 @@ export default class FriendsScreen extends React.Component {
                               onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
                               placeholder='add friend'
                               returnKeyType='done'
+                              autoCapitalize="none"
                           />
                       </View>
                   </TouchableOpacity>

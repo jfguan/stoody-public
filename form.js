@@ -15,7 +15,7 @@ export default class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
         currentUser: null,
-	  	subject: "",
+	  	  subject: "",
         description: "",
         g_loc: null,
         stoodying: false,
@@ -41,28 +41,11 @@ export default class FormScreen extends React.Component {
     this._getLocationAsync();
     const { currentUser } = this.state;
     console.log("start_stoody");
-    var user = db.collection('users').doc(currentUser.email)
-    var getDoc = user.get()
-    .then(doc => {
-        if (!doc.exists) {
-            console.log('User not in DB, creating user?');
-             db.collection('users').doc(currentUser.email).set({
-              subject: this.state.subject, 
-              description: this.state.description, 
-              g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
-              online: true,
-            })
-        } else {
-          user.update({
-            subject: this.state.subject, 
-            description: this.state.description, 
-            g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
-            online: true,
-          });
-        }
-    })
-    .catch(err => {
-        console.log('Error getting document', err);
+    db.collection('users').doc(currentUser.email).update({
+        subject: this.state.subject, 
+        description: this.state.description, 
+        g_loc: new firebase.firestore.GeoPoint(this.state.g_loc.coords.latitude, this.state.g_loc.coords.longitude),
+        stoodying: true,
     });
 
   }
@@ -73,7 +56,7 @@ export default class FormScreen extends React.Component {
     const { currentUser } = this.state;
     db.collection('users').doc(currentUser.email).update({
       g_loc: new firebase.firestore.GeoPoint(-90, 0),
-      online: false,
+      stoodying: false,
     });
   }
 

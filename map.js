@@ -56,7 +56,7 @@ export default class MapScreen extends React.Component {
                 <MapView.Marker
                     key={index}
                     coordinate={coords}
-                    title={marker.subject}
+                    title={marker.username + ' | ' + marker.subject}
                     description={marker.description}
                 />
             );
