@@ -1,8 +1,7 @@
 // SignUp.js
-import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native'
-
-import 'firebase/firestore';
+import React from 'react';
+import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native';
+import * as firebase from 'firebase';
 import firebaseApp from './Config/FirebaseConfig';
 
 const settings = { timestampsInSnapshots: true };
@@ -20,11 +19,21 @@ export default class SignUp extends React.Component {
 
 handleSignUp = () => {
   if(this.state.password == this.state.confirm_pass){
-    db.collection('users').doc(this.state.email).set({ username: this.state.username });
+    console.log('Creating user?');
+    
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate('MainNav'))
+      .then(
+        () => this.props.navigation.navigate('MainNav'),
+        db.collection('users').doc(this.state.email).set({
+          username: this.state.username,
+          subject: '', 
+          description: '', 
+          g_loc: new firebase.firestore.GeoPoint(-90, 0),
+          stoodying: false,
+        }),
+      )
       .catch(error => this.setState({ errorMessage: error.message }))
   }
   else{
