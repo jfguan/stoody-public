@@ -39,18 +39,17 @@ export default class FriendsScreen extends React.Component {
         ...this.state,
         currentUser: currentUser,
       }, this.getFriendsList);
-      this.timer = setInterval(()=> this.getFriendsList(), 3000);
+      this.timer = setInterval(()=> this.getFriendsList(), 10000);
     }
 
     handleSubmit = () => {
-      //If user input a string
+      //Empty string check
       if(this.state.addUserByEmail){
         const { currentUser } = this.state;
         //Look for if 'other user' friendReq'd 'user'
         const usersRef = db.collection('users');
         friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
-        friendReq.get()
-          .then((docSnapshot) => {
+        friendReq.get().then((docSnapshot) => {
               //If friendReq existed, move both users from 'friendReqs' to 'friends' collections
               if (docSnapshot.exists) {
                 //Add friendship to both users
@@ -73,23 +72,25 @@ export default class FriendsScreen extends React.Component {
       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       let friendsArr = [];
 
-      var friendsRef = db.collection('users').doc(currentUser.email).collection('friends');
-      var query = friendsRef.get()
-      .then(snapshot => {
-          snapshot.forEach(doc => {
-              console.log(doc.id);
-
-              friendsArr.push(
-                {image: "https://img.icons8.com/ios/50/000000/crow.png", username: doc.id},
-              )
+      db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
+          snapshot.forEach(friend => {
+              console.log(friend.id);
+              db.collection('users').doc(friend.id).get().then(friendDoc => {
+                  friendsArr.push(
+                    {
+                      image: "https://img.icons8.com/ios/50/000000/crow.png", 
+                      username: friend.id,
+                      stoodying: friendDoc.get("stoodying"),
+                    },
+                  );
+                  console.log(friendsArr);
+                  this.setState({ 
+                    ...this.state,
+                    dataSource: ds.cloneWithRows(friendsArr)
+                  })
+              });
           });
-          console.log(friendsArr);
-          this.setState({ 
-            ...this.state,
-            dataSource: ds.cloneWithRows(friendsArr)
-          })
       })
-      console.log(friendsArr);
 
     }
 
@@ -129,7 +130,7 @@ export default class FriendsScreen extends React.Component {
                                   <Image style={styles.image} source={{uri: user.image}}/>
                                   <Text style={styles.username}>{user.username}</Text>
                                   <View style={styles.rightContainer}>
-                                      <Text style={styles.status}>inactive</Text>
+                                      <Text style={styles.status}>{user.stoodying}</Text>
                                   </View>
                               </View>
                             </TouchableOpacity>
