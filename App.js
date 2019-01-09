@@ -7,7 +7,6 @@ import MapScreen from './map';
 import FormScreen from './form';
 import FriendsScreen from './friends';
 
-import Loading from './loading';
 import SignUp from './signup';
 import Login from './login';
 
