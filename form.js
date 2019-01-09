@@ -15,10 +15,11 @@ export default class FormScreen extends React.Component {
 	  super(props);
 	  this.state = {
         currentUser: null,
-	  	  subject: "",
-        description: "",
+	  	  subject: '',
+        description: '',
         g_loc: null,
         stoodying: false,
+        buttText: 'stoody!',
 	  };
 	  this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -67,14 +68,14 @@ export default class FormScreen extends React.Component {
       this.setState({
           ...this.state,
           stoodying : false,
-          text: "Confirm"
+          buttText: 'stoody!',
       }, this.stop_stoody);
     }
     else{
       this.setState({
           ...this.state,
           stoodying: true,
-          text: "Delete"
+          buttText: 'stop stoody!',
       }, this.start_stoody);
     }
   }
@@ -106,7 +107,7 @@ export default class FormScreen extends React.Component {
                     <TextInput 
                         style={styles.titleInput}
                         onChangeText={(subject) => this.setState({subject})}
-                        placeholder='s u b j e c t'
+                        placeholder='subject'
                         returnKeyType='done'
                     />
                 </View>
@@ -119,7 +120,9 @@ export default class FormScreen extends React.Component {
                 />
                 <View style={{flex:3, width: 400, height: 50}}>
                     <TouchableHighlight style={styles.button} onPress={this.handleSubmit} underlayColor='#868c82'>
-                        <Text style={styles.buttonText}>confirm</Text>
+                        <Text style={styles.buttonText}>
+                          {this.state.buttText}
+                        </Text>
                     </TouchableHighlight>
                 </View>
             </View>
