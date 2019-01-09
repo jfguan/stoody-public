@@ -39,7 +39,7 @@ export default class FriendsScreen extends React.Component {
         ...this.state,
         currentUser: currentUser,
       }, this.getFriendsList);
-      this.timer = setInterval(()=> this.getFriendsList(), 10000);
+      this.timer = setInterval(()=> this.getFriendsList(), 3000);
     }
 
     handleSubmit = () => {
@@ -71,26 +71,30 @@ export default class FriendsScreen extends React.Component {
       const { currentUser } = this.state;
       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       let friendsArr = [];
+      const friendsPromises =[];
 
       db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
           snapshot.forEach(friend => {
               console.log(friend.id);
-              db.collection('users').doc(friend.id).get().then(friendDoc => {
+              const request = db.collection('users').doc(friend.id).get().then(friendDoc => {
                   friendsArr.push(
                     {
                       image: "https://img.icons8.com/ios/50/000000/crow.png", 
-                      username: friend.id,
+                      username: friendDoc.get("username"),
                       stoodying: friendDoc.get("stoodying"),
                     },
                   );
-                  console.log(friendsArr);
-                  this.setState({ 
-                    ...this.state,
-                    dataSource: ds.cloneWithRows(friendsArr)
-                  })
               });
+              friendsPromises.push(request);
           });
-      })
+          return Promise.all(friendsPromises);
+      }).then(() => {
+          console.log(friendsArr);
+          this.setState({ 
+            ...this.state,
+            dataSource: ds.cloneWithRows(friendsArr)
+          });
+      });
 
     }
 
