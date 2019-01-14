@@ -66,6 +66,11 @@ export default class FriendsScreen extends React.Component {
               }
         });
         console.log(this.state.addUserByEmail);
+
+        this.setState({
+            ...this.state,
+            addUserByEmail: ""
+        })
       } 
     }
 
@@ -121,6 +126,7 @@ export default class FriendsScreen extends React.Component {
                                 <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
                                 <TextInput 
                                     style={styles.addFriend}
+                                    value = {this.state.addUserByEmail}
                                     onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
                                     placeholder='add friend'
                                     returnKeyType='done'
