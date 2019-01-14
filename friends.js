@@ -82,7 +82,6 @@ export default class FriendsScreen extends React.Component {
 
       db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
           snapshot.forEach(friend => {
-              console.log(friend.id);
               const request = db.collection('users').doc(friend.id).get().then(friendDoc => {
                   friendsArr.push(
                     {
@@ -96,7 +95,6 @@ export default class FriendsScreen extends React.Component {
           });
           return Promise.all(friendsPromises);
       }).then(() => {
-          console.log(friendsArr);
           this.setState({ 
             ...this.state,
             dataSource: ds.cloneWithRows(friendsArr)
