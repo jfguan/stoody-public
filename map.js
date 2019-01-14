@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet, AppRegistry, Platform } from "react-native";
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import 'firebase/firestore';
 
@@ -13,33 +12,45 @@ db.settings(settings);
 export default class MapScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true, markers: [] };
+        this.state = { 
+            isLoading: true, 
+            markers: [],
+            currentUser: null,
+        };
     }
 
+    
     //fetch marker data every 3 seconds
     componentDidMount() {
-        this.timer = setInterval(()=> this.fetchMarkerData(), 3000);
+        const { currentUser } = firebaseApp.auth()
+        this.setState({ 
+            ...this.state,
+            currentUser: currentUser,
+        }, this.fetchMarkerData);
+        this.timer = setInterval(()=> this.fetchMarkerData(), 5000);
     }
 
     //pushes data into temp array and in .setState() sets markers as temp
     //TO-DO: figure out way to retreive autheticated user's data
     fetchMarkerData() {
-        let temp = [];
-        var dataObject = {};
-        var users = db.collection('users');
-        var query = users.get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                var data = doc.data();
-                var id = doc.id;
-                temp.push(doc.data())
+        const { currentUser } = this.state;
+        
+        let locData = [];
+        const locPromises = [];
+        db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
+            snapshot.forEach(friend => {
+                const request = db.collection('users').doc(friend.id).get().then(friendDoc => {
+                    locData.push(friendDoc.data());
+                });
+                locPromises.push(request);
             });
+            return Promise.all(locPromises);
+        }).then(() => {
             this.setState({
                 isLoading: false,
-                markers: temp
+                markers: locData
             });
-        })
-
+        });
     }
 
     //places markers on map
