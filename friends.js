@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addFriend: {
+        height: 40,
         fontFamily: 'Futura',
         color:"#c4c4c4",
         fontSize:15,
