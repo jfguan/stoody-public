@@ -12,18 +12,18 @@ db.settings(settings);
 export default class MapScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            isLoading: true, 
+        this.state = {
+            isLoading: true,
             markers: [],
             currentUser: null,
         };
     }
 
-    
-    //fetch marker data every 3 seconds
+    // Set current user
+    // Set fetch marker data every 5 seconds
     componentDidMount() {
         const { currentUser } = firebaseApp.auth()
-        this.setState({ 
+        this.setState({
             ...this.state,
             currentUser: currentUser,
         }, this.fetchMarkerData);
@@ -31,10 +31,9 @@ export default class MapScreen extends React.Component {
     }
 
     //pushes data into temp array and in .setState() sets markers as temp
-    //TO-DO: figure out way to retreive autheticated user's data
     fetchMarkerData() {
         const { currentUser } = this.state;
-        
+
         let locData = [];
         const locPromises = [];
         db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
@@ -53,9 +52,9 @@ export default class MapScreen extends React.Component {
         });
     }
 
-    //places markers on map
+    // Places markers on map
     renderMarkers() {
-        //loops through markers array and adds each marker to the map
+        //loops through marker array and adds each marker to the map
         return this.state.isLoading ? null : this.state.markers.map((marker, index) => {
             const coords = {
                 latitude: marker.g_loc._lat,
