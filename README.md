@@ -1,6 +1,6 @@
 # Stoody! Unproductively study with friends
 
-Ever wondered where daddy eric is smashing kids with lucina forward smash? If Alex is doing 388 or photoshopping people bald? Or if Ameya is laughing(not sure in joy or pain) at 482 or if michelle is purposefully dirtying those v i n t a g e sneaks instead of studying LIKE YOU SHOULD BE youve come to the right place.
+Ever wondered where daddy eric is smashing kids with lucina forward smash? If Alex is doing 388 or photoshopping people bald? Or if Ameya is laughing(not sure in joy or pain) at 482 or if michelle is purposefully dirtying those v i n t a g e sneaks youve come to the right place.
 
 ### Installing/Prerequisites
 
