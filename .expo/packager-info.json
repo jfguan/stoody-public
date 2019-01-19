@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 65121,
+  "expoServerNgrokUrl": "https://nk-qcp.anonymous.stoody.exp.direct",
+  "packagerNgrokUrl": "https://packager.nk-qcp.anonymous.stoody.exp.direct",
+  "ngrokPid": 65137
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import 'firebase/firestore';
-
-// Initialize Firebase
 import firebaseApp from './Config/FirebaseConfig';
 
 const settings = { timestampsInSnapshots: true};
@@ -19,21 +17,23 @@ export default class MapScreen extends React.Component {
         };
     }
 
-    // Set current user
-    // Set fetch marker data every 5 seconds
     componentDidMount() {
+        // Set current user
         const { currentUser } = firebaseApp.auth()
         this.setState({
             ...this.state,
             currentUser: currentUser,
         }, this.fetchMarkerData);
+        // Set fetch marker data to run every 5 seconds
         this.timer = setInterval(()=> this.fetchMarkerData(), 5000);
     }
 
-    //pushes data into temp array and in .setState() sets markers as temp
+    // Pushes data into temporary locData array and in .setState() sets markers 
     fetchMarkerData() {
         const { currentUser } = this.state;
 
+        // Go through user's 'friends' collections and for each friend add their data to locaData
+        // locPromises is used to force setstate after async document call ends
         let locData = [];
         const locPromises = [];
         db.collection('users').doc(currentUser.email).collection('friends').get().then( snapshot => {
@@ -52,10 +52,10 @@ export default class MapScreen extends React.Component {
         });
     }
 
-    // Places markers on map
     renderMarkers() {
-        //loops through marker array and adds each marker to the map
+        // Loops through marker array, creating a new marker object for each entry in the array
         return this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+            //Constrcut coord obj for use in return statement
             const coords = {
                 latitude: marker.g_loc._lat,
                 longitude: marker.g_loc._long
@@ -73,7 +73,7 @@ export default class MapScreen extends React.Component {
         });
     }
 
-    //renders a map and places markers on map component
+    //Renders a map and places markers on map component
     render() {
         return (
             <MapView

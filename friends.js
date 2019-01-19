@@ -36,31 +36,33 @@ export default class FriendsScreen extends React.Component {
 
     //retrieves and sets currentUser state
     componentDidMount() {
-      const { currentUser } = firebaseApp.auth()
-      this.setState({ 
-        ...this.state,
-        currentUser: currentUser,
-      }, this.getFriendsList);
-      this.timer = setInterval(()=> this.getFriendsList(), 3000);
+        const { currentUser } = firebaseApp.auth()
+        this.setState({ 
+            ...this.state,
+            currentUser: currentUser,
+        }, this.getFriendsList);
+        this.timer = setInterval(()=> this.getFriendsList(), 3000);
     }
 
     handleSubmit = () => {
-      //Empty string check
-      if(this.state.addUserByEmail){
+        // Empty string check
+        if(!this.state.addUserByEmail){
+            return false;
+        }
         const { currentUser } = this.state;
-        //Look for if 'other user' friendReq'd 'user'
+        // Look for if 'other user' friendReq'd 'user'
         const usersRef = db.collection('users');
         friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
         friendReq.get().then((docSnapshot) => {
-              //If friendReq existed, move both users from 'friendReqs' to 'friends' collections
+              // If friendReq existed, move both users from 'friendReqs' to 'friends' collections
               if (docSnapshot.exists) {
-                //Add friendship to both users
+                // Add friendship to both users
                 usersRef.doc(this.state.addUserByEmail).collection('friends').doc(currentUser.email).set({});
                 usersRef.doc(currentUser.email).collection('friends').doc(this.state.addUserByEmail).set({});
-                //Remove friend request
+                // Remove friend request
                 usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email).delete();
               }
-              //Else add 'other user' to friendReq collection.
+              // Else add 'other user' to friendReq collection.
               else {
                 usersRef.doc(currentUser.email).collection('friendReqs').doc(this.state.addUserByEmail).set({});
               }
@@ -69,9 +71,8 @@ export default class FriendsScreen extends React.Component {
 
         this.setState({
             ...this.state,
-            addUserByEmail: ""
+            addUserByEmail: "Friend request sent!"
         })
-      } 
     }
 
     getFriendsList(){
@@ -97,7 +98,8 @@ export default class FriendsScreen extends React.Component {
       }).then(() => {
           this.setState({ 
             ...this.state,
-            dataSource: ds.cloneWithRows(friendsArr)
+            addUserByEmail: "",
+            dataSource: ds.cloneWithRows(friendsArr),
           });
       });
 
