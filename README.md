@@ -42,6 +42,7 @@ git clone https://github.com/jfguan/stoody.git
 cd stoody
 ```
 2. Create Firebase firestore and fill out firebase config in Config/FirebaseConfig.js
+3. Enable authenticaion in firebase
 
 ```
 const firebaseConfig = {
@@ -71,7 +72,7 @@ Alex Wu
 Eric Chen  
 Ameya Gadkari 
 
-And designed by:  
+Designed by:  
 Michelle Scarlett
 
 
