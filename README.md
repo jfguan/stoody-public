@@ -83,4 +83,4 @@ We don't really track previous versions, every build is final
 
 ## Acknowledgments
 
-* That one dude from Mhacks
+* That one dude from Mhacks who basically taught me about how to call after async, I still don't really understand though
