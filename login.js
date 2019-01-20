@@ -48,7 +48,7 @@ export default class Login extends React.Component {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <TouchableHighlight style={styles.otherButton} underlayColor='#868c82' onPress={this.handleLogin}>
+        <TouchableHighlight style={styles.otherButton} underlayColor='#2537C5' onPress={this.handleLogin}>
             <Text style={styles.buttonText}> Login </Text>
         </TouchableHighlight>
         <Button
