@@ -20,14 +20,14 @@ export default styles = StyleSheet.create({
     },
 
     //Form Screen styling
-    usernameInput: { //form
+    usernameInput: {
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Futura',
         fontSize: 31,
         marginBottom: -8,
     },
-    subjectInput: { //form
+    subjectInput: {
         fontFamily: 'Futura',
         justifyContent: 'center',
         alignItems: 'center',
@@ -50,12 +50,6 @@ export default styles = StyleSheet.create({
         paddingTop: 30,
     },
     
-    scrollContainer: { //form
-        //justifyContent: 'center',
-        //padding: 20,
-    },
-    //controls the 'confirm' and 'add/remove' button on form
-
     //Friends screen styling
     addFriendInput: { //friends,
         justifyContent: 'center',
