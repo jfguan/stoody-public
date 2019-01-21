@@ -2,16 +2,8 @@ import React, {StyleSheet} from 'react-native'
 
 export default styles = StyleSheet.create({
     //General styling
-    lineStyle: { //friends, form
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: '#3b3b3b',
-        fontFamily: 'Futura',
-        fontSize: 23,
-        marginBottom: 0,
-    },
     button: { //friends, form
-        backgroundColor: '#3b3b3b',
+        backgroundColor: '#2567C5',
         borderRadius: 24,
         marginBottom: 70,
         alignSelf: 'center',
@@ -35,13 +27,15 @@ export default styles = StyleSheet.create({
         fontSize: 31,
         marginBottom: -8,
     },
-    titleInput: { //form
+    subjectInput: { //form
         fontFamily: 'Futura',
         justifyContent: 'center',
         alignItems: 'center',
+        color: '#2567C5',
+        //placeholderTextColor: '#4c93C8',
         textAlign: 'center',
         fontSize: 31,
-        borderBottomColor: 'black',
+        borderBottomColor: '#2567C5',
         borderBottomWidth: 3,
         width: 300,
     },
@@ -51,10 +45,10 @@ export default styles = StyleSheet.create({
         flex:9,
         fontSize: 20,
         width: 300,
-        backgroundColor: 'white',
+        backgroundColor: '#ffffff',
         borderRadius: 30,
-        padding: 15,
-        paddingTop: 20,
+        padding: 40,
+        paddingTop: 30,
     },
     
     scrollContainer: { //form
@@ -102,9 +96,9 @@ export default styles = StyleSheet.create({
         fontFamily: 'Futura',
         fontSize: 15,
         height: 40,
-        width: '85%',
-        borderColor: 'gray',
-        borderWidth: 1,
+        width: '75%',
+        borderColor: '#5D93D3',
+        borderBottomWidth: 1,
         borderRadius: 24,
         marginTop: 8,
         paddingLeft: 16,
@@ -122,7 +116,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center'
     },
     otherButton: {
-        backgroundColor: '#3b3b3b',
+        backgroundColor: '#2567C5',
         borderRadius: 24,
         alignSelf: 'center',
         justifyContent: 'center',

@@ -120,7 +120,6 @@ export default class FriendsScreen extends React.Component {
                     </View>
                     
                     <View style={styles.body}>
-                        //text input to add friends
                         <TouchableOpacity onPress={this.handleSubmit}>
                             <View style={styles.box}>
                                 <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>

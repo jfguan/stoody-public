@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { StyleSheet, ImageBackground, Text, View, AppRegistry, Button, Platform, TouchableHighlight, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Constants, Location, Permissions} from "expo";
 import * as firebase from 'firebase';
 import firebaseApp from './Config/FirebaseConfig';
@@ -101,11 +101,11 @@ export default class FormScreen extends React.Component {
   render() {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-            <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: '#ede6cb'}}>
+            <ImageBackground style={{flex: 1, flexDirection: 'column', alignItems: 'center'}} source= {require('./assets/background.png')}>
                 <View style={{flex: 1, width: 400, height: 50}}/>
                 <View style={{flex: 3, width: 400, height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <TextInput 
-                        style={styles.titleInput}
+                        style={styles.subjectInput}
                         onChangeText={(subject) => this.setState({subject})}
                         placeholder='subject'
                         returnKeyType='done'
@@ -125,7 +125,7 @@ export default class FormScreen extends React.Component {
                         </Text>
                     </TouchableHighlight>
                 </View>
-            </View>
+            </ImageBackground>
         </TouchableWithoutFeedback> 
     );
   }
