@@ -28,37 +28,39 @@ export default class Login extends React.Component {
   render() {
     return (
       <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
-      <View style={styles.container}>
-        <Text style={styles.loginAndSignUp}>STOODY</Text>
-        {this.state.errorMessage &&
-          <Text style={styles.errorMsgStyle}>
-            {this.state.errorMessage}
-          </Text>}
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="✉ Email"
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="🔒 Password"
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <TouchableHighlight style={styles.otherButton} onPress={this.handleLogin}>
-            <Text style={styles.buttonText}> Login </Text>
-        </TouchableHighlight>
-        <Button
-          textStyle={{ fontFamily: 'Futura' }}
-          color="gray"
-          title="Create an account"
-          onPress={() => this.props.navigation.navigate('SignUp')}
-        />
-      </View>
+        <View style={styles.container}>
+          <Text style={styles.loginAndSignUp}>STOODY</Text>
+          {this.state.errorMessage &&
+            <Text style={styles.errorMsgStyle}>
+              {this.state.errorMessage}
+            </Text>}
+          <TextInput
+            style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="✉ Email"
+            placeholderTextColor= '#2567C5'
+            onChangeText={email => this.setState({ email })}
+            value={this.state.email}
+          />
+          <TextInput
+            secureTextEntry
+            style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="🔒 Password"
+            placeholderTextColor= '#2567C5'
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
+          />
+          <TouchableHighlight style={styles.otherButton} onPress={this.handleLogin}>
+              <Text style={styles.buttonText}> Login </Text>
+          </TouchableHighlight>
+          <Button
+            textStyle={{ fontFamily: 'Futura' }}
+            color='#4c93C8'
+            title="Create an account"
+            onPress={() => this.props.navigation.navigate('SignUp')}
+          />
+        </View>
       </ImageBackground>
     )
   }

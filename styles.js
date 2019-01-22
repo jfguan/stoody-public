@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         marginTop: 30,
-        width: 250,
+        width: 280,
         height: 42,
     },
     buttonText: { //friends, form
@@ -99,13 +99,13 @@ export default styles = StyleSheet.create({
     loginAndSignUp: {
         fontFamily: 'Futura',
         color: '#3b3b3b',
-        fontSize: 30,
+        fontSize: 48,
         alignItems: 'center',
         paddingBottom: 15,
     },
     container: {
         flex: 1,
-        width: '80%',
+        width: '90%',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -117,6 +117,6 @@ export default styles = StyleSheet.create({
         width: 200,
         height: 42,
         padding: 6,
-        marginTop: 14,
+        marginTop: 32,
     },
 });
