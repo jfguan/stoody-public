@@ -11,6 +11,7 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
     Keyboard,
+    ImageBackground,
 } from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
@@ -34,7 +35,7 @@ export default class FriendsScreen extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    //retrieves and sets currentUser state
+    // Retrieves and sets currentUser state
     componentDidMount() {
         const { currentUser } = firebaseApp.auth()
         this.setState({ 
@@ -44,11 +45,24 @@ export default class FriendsScreen extends React.Component {
         this.timer = setInterval(()=> this.getFriendsList(), 3000);
     }
 
+    // Triggered by add friend button
     handleSubmit = () => {
         // Empty string check
         if(!this.state.addUserByEmail){
             return false;
         }
+        // Check if friend adding exists
+        db.collection('users').doc(this.state.addUserByEmail).get().then((docSnapshot) => {
+            if (docSnapshot.exists) {
+            } else {
+              this.setState({
+                ...this.state,
+                addUserByEmail: "Friendo no existo :("
+            })
+              return false;
+            }
+        });
+
         const { currentUser } = this.state;
         // Look for if 'other user' friendReq'd 'user'
         const usersRef = db.collection('users');
@@ -98,7 +112,6 @@ export default class FriendsScreen extends React.Component {
       }).then(() => {
           this.setState({ 
             ...this.state,
-            addUserByEmail: "",
             dataSource: ds.cloneWithRows(friendsArr),
           });
       });
@@ -109,14 +122,12 @@ export default class FriendsScreen extends React.Component {
         const { currentUser } = this.state
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
                 <View style={styles.container}>
-                    <View style={{width: Dimensions.get('window').width, height: 50, backgroundColor: '#408e6c'}}/>
 
                     <View style={styles.header}>
-                        <View style={styles.headerContent}>
-                            <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
-                            <Text style={styles.name}>{currentUser && currentUser.email} </Text>
-                        </View>
+                        <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                        <Text style={styles.name}>{currentUser && currentUser.email} </Text>
                     </View>
                     
                     <View style={styles.body}>
@@ -124,7 +135,7 @@ export default class FriendsScreen extends React.Component {
                             <View style={styles.box}>
                                 <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
                                 <TextInput 
-                                    style={styles.addFriend}
+                                    style={styles.addFriendInput}
                                     value = {this.state.addUserByEmail}
                                     onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
                                     placeholder='add friend'
@@ -133,24 +144,25 @@ export default class FriendsScreen extends React.Component {
                                 />
                             </View>
                         </TouchableOpacity>
-                        <ListView style={styles.container} enableEmptySections={true}
+                        <ListView enableEmptySections={true}
                             dataSource={this.state.dataSource}
                             renderRow={(user) => {
                                 return (
                                     <TouchableOpacity>
-                                    <View style={styles.box}>
-                                        <Image style={styles.image} source={{uri: user.image}}/>
-                                        <Text style={styles.username}>{user.username}</Text>
-                                        <View style={styles.rightContainer}>
-                                            <Text style={styles.status}>{user.stoodying}</Text>
+                                        <View style={styles.box}>
+                                            <Image style={styles.image} source={{uri: user.image}}/>
+                                            <Text style={styles.username}>{user.username}</Text>
+                                            <View style={styles.rightContainer}>
+                                                <Text style={styles.status}>{user.stoodying}</Text>
+                                            </View>
                                         </View>
-                                    </View>
                                     </TouchableOpacity>
                                 )
                             }}
                         />
                     </View>
                 </View>
+                </ImageBackground>
             </TouchableWithoutFeedback>
         );
     }
@@ -158,19 +170,10 @@ export default class FriendsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     header:{
-        backgroundColor: "#408e6c",
-    },
-    headerContent:{
+        marginTop: 60,
         padding:20,
+        width: Dimensions.get('window').width - 90,
         alignItems: 'center',
-    },
-    addFriend: {
-        height: 40,
-        fontFamily: 'Futura',
-        color:"#c4c4c4",
-        fontSize:15,
-        alignSelf:'center',
-        marginLeft:10
     },
     avatar: {
         width: 130,
@@ -181,6 +184,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
     },
     image:{
+        marginRight: 10,
         width: 60,
         height: 60,
         borderRadius: 30,
@@ -193,11 +197,14 @@ const styles = StyleSheet.create({
         fontWeight:'600',
     },
     body: {
-        padding:30,
-        backgroundColor :"#E6E6FA",
+        marginTop: 20,
+        padding:25,
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderRadius: 35,
+        height: 350,
     },
     box: {
-        padding:5,
+        padding:2,
         marginTop:5,
         marginBottom:5,
         backgroundColor: '#FFFFFF',
@@ -209,10 +216,11 @@ const styles = StyleSheet.create({
             height:1,
             width:-2
         },
-        elevation:2
+        elevation:2,
+        borderRadius: 35,
     },
     username: {
-        color: "#20B2AA",
+        color: "#5D93D3",
         fontFamily: 'Futura',
         fontSize:15,
         alignSelf:'center',

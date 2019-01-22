@@ -45,7 +45,7 @@ const MainNavigator = createBottomTabNavigator( {
               <Icon
                 name="ios-people"
                 size={24}
-                style={{ color: tintColor, paddingTop: 5 }}
+                style={{ color: tintColor, paddingTop: 5}}
               />
             )
         }
@@ -59,9 +59,10 @@ const MainNavigator = createBottomTabNavigator( {
     },
     tabBarOptions: {
         activeTintColor: '#2567C5',
-        inactiveTintColor: '#71B2C4',
+        inactiveTintColor: '#5D93D3',
         style: {
-            backgroundColor: '#DBE9C7' // TabBar background
+            backgroundColor: '#D7EAC2', // TabBar background
+            borderTopColor: "transparent",
         }
     }
 });
