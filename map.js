@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight, ImageBackground } from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
@@ -78,7 +79,8 @@ export default class MapScreen extends React.Component {
         return (
             <MapView
                 style={{
-                    flex: 9
+                    flex: 9,
+                    borderRadius: 24,
                 }}
                 provider = { PROVIDER_GOOGLE }
                 initialRegion={{

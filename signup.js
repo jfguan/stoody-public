@@ -37,7 +37,9 @@ handleSignUp = () => {
       .catch(error => this.setState({ errorMessage: error.message }))
   }
   else{
-    this.setState({ errorMessage: 'bruh ur Passwords don\'t match'});
+    this.setState({ 
+      ...this.state, 
+      errorMessage: 'bruh ur Passwords don\'t match'});
   }
   console.log('handleSignUp');
 }

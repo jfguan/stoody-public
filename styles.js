@@ -56,6 +56,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         fontFamily: 'Futura',
         fontSize: 23,
+        height: 43,
         marginBottom: 8,
         marginTop: -4,
         borderColor: 'gray',

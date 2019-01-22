@@ -35,7 +35,7 @@ export default class FriendsScreen extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    //retrieves and sets currentUser state
+    // Retrieves and sets currentUser state
     componentDidMount() {
         const { currentUser } = firebaseApp.auth()
         this.setState({ 
@@ -45,11 +45,24 @@ export default class FriendsScreen extends React.Component {
         this.timer = setInterval(()=> this.getFriendsList(), 3000);
     }
 
+    // Triggered by add friend button
     handleSubmit = () => {
         // Empty string check
         if(!this.state.addUserByEmail){
             return false;
         }
+        // Check if friend adding exists
+        db.collection('users').doc(this.state.addUserByEmail).get().then((docSnapshot) => {
+            if (docSnapshot.exists) {
+            } else {
+              this.setState({
+                ...this.state,
+                addUserByEmail: "Friendo no existo :("
+            })
+              return false;
+            }
+        });
+
         const { currentUser } = this.state;
         // Look for if 'other user' friendReq'd 'user'
         const usersRef = db.collection('users');
@@ -99,7 +112,6 @@ export default class FriendsScreen extends React.Component {
       }).then(() => {
           this.setState({ 
             ...this.state,
-            addUserByEmail: "",
             dataSource: ds.cloneWithRows(friendsArr),
           });
       });
@@ -123,7 +135,7 @@ export default class FriendsScreen extends React.Component {
                             <View style={styles.box}>
                                 <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
                                 <TextInput 
-                                    style={styles.addFriend}
+                                    style={styles.addFriendInput}
                                     value = {this.state.addUserByEmail}
                                     onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
                                     placeholder='add friend'
@@ -163,14 +175,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width - 90,
         alignItems: 'center',
     },
-    addFriend: {
-        height: 40,
-        fontFamily: 'Futura',
-        color:"#c4c4c4",
-        fontSize:15,
-        alignSelf:'center',
-        marginLeft:10
-    },
     avatar: {
         width: 130,
         height: 130,
@@ -180,6 +184,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
     },
     image:{
+        marginRight: 10,
         width: 60,
         height: 60,
         borderRadius: 30,
@@ -215,7 +220,7 @@ const styles = StyleSheet.create({
         borderRadius: 35,
     },
     username: {
-        color: "#20B2AA",
+        color: "#5D93D3",
         fontFamily: 'Futura',
         fontSize:15,
         alignSelf:'center',
