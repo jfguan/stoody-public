@@ -11,6 +11,7 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
     Keyboard,
+    ImageBackground,
 } from 'react-native';
 import 'firebase/firestore';
 import firebaseApp from './Config/FirebaseConfig';
@@ -109,14 +110,12 @@ export default class FriendsScreen extends React.Component {
         const { currentUser } = this.state
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
                 <View style={styles.container}>
-                    <View style={{width: Dimensions.get('window').width, height: 50, backgroundColor: '#408e6c'}}/>
 
                     <View style={styles.header}>
-                        <View style={styles.headerContent}>
-                            <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
-                            <Text style={styles.name}>{currentUser && currentUser.email} </Text>
-                        </View>
+                        <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                        <Text style={styles.name}>{currentUser && currentUser.email} </Text>
                     </View>
                     
                     <View style={styles.body}>
@@ -133,24 +132,25 @@ export default class FriendsScreen extends React.Component {
                                 />
                             </View>
                         </TouchableOpacity>
-                        <ListView style={styles.container} enableEmptySections={true}
+                        <ListView enableEmptySections={true}
                             dataSource={this.state.dataSource}
                             renderRow={(user) => {
                                 return (
                                     <TouchableOpacity>
-                                    <View style={styles.box}>
-                                        <Image style={styles.image} source={{uri: user.image}}/>
-                                        <Text style={styles.username}>{user.username}</Text>
-                                        <View style={styles.rightContainer}>
-                                            <Text style={styles.status}>{user.stoodying}</Text>
+                                        <View style={styles.box}>
+                                            <Image style={styles.image} source={{uri: user.image}}/>
+                                            <Text style={styles.username}>{user.username}</Text>
+                                            <View style={styles.rightContainer}>
+                                                <Text style={styles.status}>{user.stoodying}</Text>
+                                            </View>
                                         </View>
-                                    </View>
                                     </TouchableOpacity>
                                 )
                             }}
                         />
                     </View>
                 </View>
+                </ImageBackground>
             </TouchableWithoutFeedback>
         );
     }
@@ -158,10 +158,9 @@ export default class FriendsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     header:{
-        backgroundColor: "#408e6c",
-    },
-    headerContent:{
+        marginTop: 60,
         padding:20,
+        width: Dimensions.get('window').width - 90,
         alignItems: 'center',
     },
     addFriend: {
@@ -193,11 +192,14 @@ const styles = StyleSheet.create({
         fontWeight:'600',
     },
     body: {
-        padding:30,
-        backgroundColor :"#E6E6FA",
+        marginTop: 20,
+        padding:25,
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderRadius: 35,
+        height: 350,
     },
     box: {
-        padding:5,
+        padding:2,
         marginTop:5,
         marginBottom:5,
         backgroundColor: '#FFFFFF',
@@ -209,7 +211,8 @@ const styles = StyleSheet.create({
             height:1,
             width:-2
         },
-        elevation:2
+        elevation:2,
+        borderRadius: 35,
     },
     username: {
         color: "#20B2AA",
