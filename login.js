@@ -1,6 +1,6 @@
 // Login.js
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight, ImageBackground } from 'react-native'
 import * as firebase from 'firebase';
 
 export default class Login extends React.Component {
@@ -27,6 +27,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
+      <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
       <View style={styles.container}>
         <Text style={styles.loginAndSignUp}>STOODY</Text>
         {this.state.errorMessage &&
@@ -58,6 +59,7 @@ export default class Login extends React.Component {
           onPress={() => this.props.navigation.navigate('SignUp')}
         />
       </View>
+      </ImageBackground>
     )
   }
 }
