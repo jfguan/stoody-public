@@ -77,10 +77,14 @@ export default class MapScreen extends React.Component {
     //Renders a map and places markers on map component
     render() {
         return (
+            <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
+            <View style={styles.container}>
             <MapView
                 style={{
-                    flex: 9,
-                    borderRadius: 24,
+                    height:630,
+                    width: 365, 
+                    borderRadius: 35,
+
                 }}
                 provider = { PROVIDER_GOOGLE }
                 initialRegion={{
@@ -92,6 +96,8 @@ export default class MapScreen extends React.Component {
             >
             {this.renderMarkers()}
             </MapView>
+            </View>
+            </ImageBackground>
         );
     }
 }

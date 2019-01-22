@@ -123,45 +123,45 @@ export default class FriendsScreen extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
-                <View style={styles.container}>
+                    <View style={styles.container}>
 
-                    <View style={styles.header}>
-                        <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
-                        <Text style={styles.name}>{currentUser && currentUser.email} </Text>
-                    </View>
-                    
-                    <View style={styles.body}>
-                        <TouchableOpacity onPress={this.handleSubmit}>
-                            <View style={styles.box}>
-                                <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
-                                <TextInput 
-                                    style={styles.addFriendInput}
-                                    value = {this.state.addUserByEmail}
-                                    onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
-                                    placeholder='add friend'
-                                    returnKeyType='done'
-                                    autoCapitalize="none"
-                                />
-                            </View>
-                        </TouchableOpacity>
-                        <ListView enableEmptySections={true}
-                            dataSource={this.state.dataSource}
-                            renderRow={(user) => {
-                                return (
-                                    <TouchableOpacity>
-                                        <View style={styles.box}>
-                                            <Image style={styles.image} source={{uri: user.image}}/>
-                                            <Text style={styles.username}>{user.username}</Text>
-                                            <View style={styles.rightContainer}>
-                                                <Text style={styles.status}>{user.stoodying}</Text>
+                        <View style={styles.header}>
+                            <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                            <Text style={styles.name}>{currentUser && currentUser.email} </Text>
+                        </View>
+                        
+                        <View style={styles.body}>
+                            <TouchableOpacity onPress={this.handleSubmit}>
+                                <View style={styles.box}>
+                                    <Image style={styles.image} source={{uri: 'https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/plus-512.png'}}/>
+                                    <TextInput 
+                                        style={styles.addFriendInput}
+                                        value = {this.state.addUserByEmail}
+                                        onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
+                                        placeholder='add friend'
+                                        returnKeyType='done'
+                                        autoCapitalize="none"
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                            <ListView enableEmptySections={true}
+                                dataSource={this.state.dataSource}
+                                renderRow={(user) => {
+                                    return (
+                                        <TouchableOpacity>
+                                            <View style={styles.box}>
+                                                <Image style={styles.image} source={{uri: user.image}}/>
+                                                <Text style={styles.username}>{user.username}</Text>
+                                                <View style={styles.rightContainer}>
+                                                    <Text style={styles.status}>{user.stoodying}</Text>
+                                                </View>
                                             </View>
-                                        </View>
-                                    </TouchableOpacity>
-                                )
-                            }}
-                        />
+                                        </TouchableOpacity>
+                                    )
+                                }}
+                            />
+                        </View>
                     </View>
-                </View>
                 </ImageBackground>
             </TouchableWithoutFeedback>
         );
