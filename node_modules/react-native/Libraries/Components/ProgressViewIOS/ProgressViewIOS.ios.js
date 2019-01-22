@@ -10,20 +10,20 @@
 
 'use strict';
 
-const Image = require('Image');
-const NativeMethodsMixin = require('NativeMethodsMixin');
-const React = require('React');
-const ReactNative = require('ReactNative');
+const Image = require('../../Image/Image');
+const NativeMethodsMixin = require('../../Renderer/shims/NativeMethodsMixin');
+const React = require('react');
+const ReactNative = require('../../Renderer/shims/ReactNative');
 const PropTypes = require('prop-types');
-const StyleSheet = require('StyleSheet');
-const ViewPropTypes = require('ViewPropTypes');
+const StyleSheet = require('../../StyleSheet/StyleSheet');
+const ViewPropTypes = require('../View/ViewPropTypes');
 
 const createReactClass = require('create-react-class');
-const requireNativeComponent = require('requireNativeComponent');
+const requireNativeComponent = require('../../ReactNative/requireNativeComponent');
 
-import type {ImageSource} from 'ImageSource';
-import type {ColorValue} from 'StyleSheetTypes';
-import type {ViewProps} from 'ViewPropTypes';
+import type {ImageSource} from '../../Image/ImageSource';
+import type {ColorValue} from '../../StyleSheet/StyleSheetTypes';
+import type {ViewProps} from '../View/ViewPropTypes';
 
 const RCTProgressView = requireNativeComponent('RCTProgressView');
 

@@ -132,6 +132,15 @@ async function getCliConfig(): Promise<RNConfig> {
   );
 
   config.transformer.assetRegistryPath = ASSET_REGISTRY_PATH;
+
+  // NOTE(expo): include the Expo asset plugin to support static resources
+  try {
+    let expoAssetPluginPath = require.resolve('expo/tools/hashAssetFiles');
+    config.transformer.assetPlugins = [expoAssetPluginPath];
+  } catch (e) {
+    console.warn('Could not find the "expo" package in your project when configuring the packager');
+  }
+
   config.resolver.hasteImplModulePath =
     config.resolver.hasteImplModulePath || defaultConfig.hasteImplModulePath;
   config.resolver.platforms = config.resolver.platforms

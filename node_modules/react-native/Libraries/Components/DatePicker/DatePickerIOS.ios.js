@@ -13,14 +13,14 @@
 
 'use strict';
 
-const React = require('React');
+const React = require('react');
 const invariant = require('fbjs/lib/invariant');
-const StyleSheet = require('StyleSheet');
-const View = require('View');
+const StyleSheet = require('../../StyleSheet/StyleSheet');
+const View = require('../View/View');
 
-const requireNativeComponent = require('requireNativeComponent');
+const requireNativeComponent = require('../../ReactNative/requireNativeComponent');
 
-import type {ViewProps} from 'ViewPropTypes';
+import type {ViewProps} from '../View/ViewPropTypes';
 
 const RCTDatePickerIOS = requireNativeComponent('RCTDatePicker');
 

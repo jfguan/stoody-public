@@ -10,17 +10,17 @@
 
 'use strict';
 
-const ReactNative = require('ReactNative');
-const Platform = require('Platform');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
+const ReactNative = require('../../Renderer/shims/ReactNative');
+const Platform = require('../../Utilities/Platform');
+const React = require('react');
+const StyleSheet = require('../../StyleSheet/StyleSheet');
 
-const requireNativeComponent = require('requireNativeComponent');
+const requireNativeComponent = require('../../ReactNative/requireNativeComponent');
 
-import type {ImageSource} from 'ImageSource';
-import type {ViewStyleProp} from 'StyleSheet';
-import type {ColorValue} from 'StyleSheetTypes';
-import type {ViewProps} from 'ViewPropTypes';
+import type {ImageSource} from '../../Image/ImageSource';
+import type {ViewStyleProp} from '../../StyleSheet/StyleSheet';
+import type {ColorValue} from '../../StyleSheet/StyleSheetTypes';
+import type {ViewProps} from '../View/ViewPropTypes';
 
 const RCTSlider = requireNativeComponent('RCTSlider');
 

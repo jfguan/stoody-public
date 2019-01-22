@@ -11,7 +11,7 @@
 
 'use strict';
 
-const RCTAlertManager = require('NativeModules').AlertManager;
+const RCTAlertManager = require('../BatchedBridge/NativeModules').AlertManager;
 
 /**
  * An Alert button type

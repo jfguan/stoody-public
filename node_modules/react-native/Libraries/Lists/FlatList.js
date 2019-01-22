@@ -9,22 +9,22 @@
  */
 'use strict';
 
-const MetroListView = require('MetroListView'); // Used as a fallback legacy option
-const React = require('React');
-const View = require('View');
-const VirtualizedList = require('VirtualizedList');
-const ListView = require('ListView');
-const StyleSheet = require('StyleSheet');
+const MetroListView = require('./MetroListView'); // Used as a fallback legacy option
+const React = require('react');
+const View = require('../Components/View/View');
+const VirtualizedList = require('./VirtualizedList');
+const ListView = require('./ListView/ListView');
+const StyleSheet = require('../StyleSheet/StyleSheet');
 
 const invariant = require('fbjs/lib/invariant');
 
-import type {DangerouslyImpreciseStyleProp, ViewStyleProp} from 'StyleSheet';
+import type {DangerouslyImpreciseStyleProp, ViewStyleProp} from '../StyleSheet/StyleSheet';
 import type {
   ViewabilityConfig,
   ViewToken,
   ViewabilityConfigCallbackPair,
-} from 'ViewabilityHelper';
-import type {Props as VirtualizedListProps} from 'VirtualizedList';
+} from './ViewabilityHelper';
+import type {Props as VirtualizedListProps} from './VirtualizedList';
 
 export type SeparatorsObj = {
   highlight: () => void,

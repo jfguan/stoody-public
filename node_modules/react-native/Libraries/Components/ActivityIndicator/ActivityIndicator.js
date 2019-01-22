@@ -10,19 +10,19 @@
 
 'use strict';
 
-const Platform = require('Platform');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
-const View = require('View');
+const Platform = require('../../Utilities/Platform');
+const React = require('react');
+const StyleSheet = require('../../StyleSheet/StyleSheet');
+const View = require('../View/View');
 
-const requireNativeComponent = require('requireNativeComponent');
+const requireNativeComponent = require('../../ReactNative/requireNativeComponent');
 
-import type {NativeComponent} from 'ReactNative';
-import type {ViewProps} from 'ViewPropTypes';
+import type {NativeComponent} from '../../Renderer/shims/ReactNative';
+import type {ViewProps} from '../View/ViewPropTypes';
 
 const RCTActivityIndicator =
   Platform.OS === 'android'
-    ? require('ProgressBarAndroid')
+    ? require('../ProgressBarAndroid/ProgressBarAndroid')
     : requireNativeComponent('RCTActivityIndicatorView');
 
 const GRAY = '#999999';
