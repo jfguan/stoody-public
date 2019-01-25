@@ -54,39 +54,39 @@ export default class FriendsScreen extends React.Component {
         // Check if friend adding exists
         db.collection('users').doc(this.state.addUserByEmail).get().then((docSnapshot) => {
             if (docSnapshot.exists) {
-            } else {
-              this.setState({
-                ...this.state,
-                addUserByEmail: "Friendo no existo :("
-            })
+                const { currentUser } = this.state;
+                // Look for if 'other user' friendReq'd 'user'
+                const usersRef = db.collection('users');
+                friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
+                friendReq.get().then((docSnapshot) => {
+                      // If friendReq existed, move both users from 'friendReqs' to 'friends' collections
+                      if (docSnapshot.exists) {
+                        // Add friendship to both users
+                        usersRef.doc(this.state.addUserByEmail).collection('friends').doc(currentUser.email).set({});
+                        usersRef.doc(currentUser.email).collection('friends').doc(this.state.addUserByEmail).set({});
+                        // Remove friend request
+                        usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email).delete();
+                      }
+                      // Else add 'other user' to friendReq collection.
+                      else {
+                        usersRef.doc(currentUser.email).collection('friendReqs').doc(this.state.addUserByEmail).set({});
+                      }
+                });
+                console.log(this.state.addUserByEmail);
+
+                this.setState({
+                    ...this.state,
+                    addUserByEmail: "Friend request sent!"
+                })
+            } 
+            else {
+                this.setState({
+                    ...this.state,
+                    addUserByEmail: "Friendo no existo :("
+                })
               return false;
             }
         });
-
-        const { currentUser } = this.state;
-        // Look for if 'other user' friendReq'd 'user'
-        const usersRef = db.collection('users');
-        friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
-        friendReq.get().then((docSnapshot) => {
-              // If friendReq existed, move both users from 'friendReqs' to 'friends' collections
-              if (docSnapshot.exists) {
-                // Add friendship to both users
-                usersRef.doc(this.state.addUserByEmail).collection('friends').doc(currentUser.email).set({});
-                usersRef.doc(currentUser.email).collection('friends').doc(this.state.addUserByEmail).set({});
-                // Remove friend request
-                usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email).delete();
-              }
-              // Else add 'other user' to friendReq collection.
-              else {
-                usersRef.doc(currentUser.email).collection('friendReqs').doc(this.state.addUserByEmail).set({});
-              }
-        });
-        console.log(this.state.addUserByEmail);
-
-        this.setState({
-            ...this.state,
-            addUserByEmail: "Friend request sent!"
-        })
     }
 
     getFriendsList(){
