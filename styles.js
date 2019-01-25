@@ -41,6 +41,7 @@ export default styles = StyleSheet.create({
     descriptionInput: {
         fontFamily: 'Futura',
         textAlign: 'center',
+        color: '#2567C5',
         flex:9,
         fontSize: 20,
         width: 300,
