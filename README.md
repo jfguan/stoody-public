@@ -8,7 +8,8 @@ This app most prominiently implies invitation to hangout. If you see someone, th
 
 ### Features(screenshot for each)
 
-VIDEO GOES HERE
+CHECKOUT OUR DEMO HERE:
+https://youtu.be/nyARdwBz7yE
 
 * Login/register system
 * Friend system(adding friends)
