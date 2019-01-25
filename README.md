@@ -6,10 +6,10 @@ Why this was written:
 People are in near proximity and would hangout but do not know if other people are free, and if so, where.
 This app most prominiently implies invitation to hangout. If you see someone, they are free and you can go find them. A
 
-### Features(screenshot for each)
+### Features (checkout our video demo!):
 
-CHECKOUT OUR DEMO HERE:
-https://youtu.be/nyARdwBz7yE
+[![ALt text](https://img.youtube.com/vi/nyARdwBz7yE/0.jpg)](https://www.youtube.com/watch?v=nyARdwBz7yE)
+
 
 * Login/register system
 * Friend system(adding friends)
