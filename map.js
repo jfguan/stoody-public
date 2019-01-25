@@ -81,8 +81,8 @@ export default class MapScreen extends React.Component {
                 <View style={styles.container}>
                     <MapView
                         style={{
-                            height:600,
-                            width: 365, 
+                            height:'89%',
+                            width: '96%', 
                             borderRadius: 35,
 
                         }}
