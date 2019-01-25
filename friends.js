@@ -57,6 +57,7 @@ export default class FriendsScreen extends React.Component {
                 const { currentUser } = this.state;
                 // Look for if 'other user' friendReq'd 'user'
                 const usersRef = db.collection('users');
+                usersRef.doc(currentUser.email).collection('friends').doc(currentUser.email).set({});
                 friendReq = usersRef.doc(this.state.addUserByEmail).collection('friendReqs').doc(currentUser.email);
                 friendReq.get().then((docSnapshot) => {
                       // If friendReq existed, move both users from 'friendReqs' to 'friends' collections
