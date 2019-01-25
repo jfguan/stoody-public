@@ -101,7 +101,7 @@ export default class FriendsScreen extends React.Component {
               const request = db.collection('users').doc(friend.id).get().then(friendDoc => {
                   friendsArr.push(
                     {
-                      image: "https://img.icons8.com/ios/50/000000/crow.png", 
+                      image: "https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-17-512.png", 
                       username: friendDoc.get("username"),
                       stoodying: friendDoc.get("stoodying"),
                     },
@@ -127,7 +127,7 @@ export default class FriendsScreen extends React.Component {
                     <View style={styles.container}>
 
                         <View style={styles.header}>
-                            <Image style={styles.avatar} source={{uri: 'https://img.icons8.com/color/300/000000/user-female-circle.png'}}/>
+                            <Image style={styles.avatar} source={{uri: 'https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png'}}/>
                             <Text style={styles.name}>{currentUser && currentUser.email} </Text>
                         </View>
                         
@@ -142,6 +142,7 @@ export default class FriendsScreen extends React.Component {
                                         placeholder='add friend'
                                         returnKeyType='done'
                                         autoCapitalize="none"
+                                        placeholderStyle={{ fontFamily: 'Futura' }}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -239,6 +240,17 @@ const styles = StyleSheet.create({
         fontSize: 12,
         flexDirection: 'row',
         marginRight: 5,
-    }
+    },
+    addFriendInput: { //friends,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Futura',
+        fontSize: 15,
+        height: 44,
+        width: 150,
+        borderColor: 'gray',
+        borderWidth: 0,
+        borderRadius: 24,
+    },
 });
  

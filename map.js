@@ -79,9 +79,12 @@ export default class MapScreen extends React.Component {
         return (
             <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
             <View style={styles.container}>
+            <View style={{backgroundColor: 'rgba(255,255,255,0.7)', borderRadius: 30, marginBottom: 10, marginTop: 40}}>
+                <Text style={{fontFamily: 'Futura', fontSize: 30, color: '#2567C5', marginTop: 4, marginBottom: 4, paddingLeft: 20, marginRight: 20}}> M  A  P </Text>
+            </View>
             <MapView
                 style={{
-                    height:630,
+                    height:600,
                     width: 365, 
                     borderRadius: 35,
 

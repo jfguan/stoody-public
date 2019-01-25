@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 1670,
-  "expoServerNgrokUrl": "https://cq-eqz.jfguan.stoody.exp.direct",
-  "packagerNgrokUrl": "https://packager.cq-eqz.jfguan.stoody.exp.direct",
-  "ngrokPid": 1691
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
