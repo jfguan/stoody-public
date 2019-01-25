@@ -78,28 +78,25 @@ export default class MapScreen extends React.Component {
     render() {
         return (
             <ImageBackground style={{flex: 1, alignItems: 'center'}} source= {require('./assets/background.png')}>
-            <View style={styles.container}>
-            <View style={{backgroundColor: 'rgba(255,255,255,0.7)', borderRadius: 30, marginBottom: 10, marginTop: 40}}>
-                <Text style={{fontFamily: 'Futura', fontSize: 30, color: '#2567C5', marginTop: 4, marginBottom: 4, paddingLeft: 20, marginRight: 20}}> M  A  P </Text>
-            </View>
-            <MapView
-                style={{
-                    height:600,
-                    width: 365, 
-                    borderRadius: 35,
+                <View style={styles.container}>
+                    <MapView
+                        style={{
+                            height:600,
+                            width: 365, 
+                            borderRadius: 35,
 
-                }}
-                provider = { PROVIDER_GOOGLE }
-                initialRegion={{
-                    latitude: 42.277154,
-                    longitude: -83.738285,
-                    latitudeDelta: 0.01,
-                    longitudeDelta: 0.01,
-                }}
-            >
-            {this.renderMarkers()}
-            </MapView>
-            </View>
+                        }}
+                        provider = { PROVIDER_GOOGLE }
+                        initialRegion={{
+                            latitude: 42.277154,
+                            longitude: -83.738285,
+                            latitudeDelta: 0.01,
+                            longitudeDelta: 0.01,
+                        }}
+                    >
+                    {this.renderMarkers()}
+                    </MapView>
+                </View>
             </ImageBackground>
         );
     }

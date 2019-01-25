@@ -101,7 +101,7 @@ export default class FriendsScreen extends React.Component {
               const request = db.collection('users').doc(friend.id).get().then(friendDoc => {
                   friendsArr.push(
                     {
-                      image: "https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-17-512.png", 
+                      image: "https://image.flaticon.com/icons/svg/1451/1451296.svg", 
                       username: friendDoc.get("username"),
                       stoodying: friendDoc.get("stoodying"),
                     },
@@ -127,7 +127,7 @@ export default class FriendsScreen extends React.Component {
                     <View style={styles.container}>
 
                         <View style={styles.header}>
-                            <Image style={styles.avatar} source={{uri: 'https://cdn4.iconfinder.com/data/icons/instagram-ui-twotone/48/Paul-18-512.png'}}/>
+                            <Image style={styles.avatar} source={require('./assets/dog.png')}/>
                             <Text style={styles.name}>{currentUser && currentUser.email} </Text>
                         </View>
                         
@@ -152,7 +152,7 @@ export default class FriendsScreen extends React.Component {
                                     return (
                                         <TouchableOpacity>
                                             <View style={styles.box}>
-                                                <Image style={styles.image} source={{uri: user.image}}/>
+                                                <Image style={styles.image} source={require('./assets/doggo.png')}/>
                                                 <Text style={styles.username}>{user.username}</Text>
                                                 <View style={styles.rightContainer}>
                                                     <Text style={styles.status}>{user.stoodying}</Text>
@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         borderColor: "#FFFFFF",
         marginBottom:10,
+        resizeMode: 'contain',
     },
     image:{
         marginRight: 10,
