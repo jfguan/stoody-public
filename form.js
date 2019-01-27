@@ -114,7 +114,7 @@ export default class FormScreen extends React.Component {
                 </View>
                 <TextInput
                     style={styles.descriptionInput}
-                    placeholder="add more details..."
+                    placeholder="add more details! Location, time, etc."
                     placeholderTextColor = '#4c93C8' 
                     onChangeText={(description) => this.setState({description})}
                     multiline={true}

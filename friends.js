@@ -140,7 +140,7 @@ export default class FriendsScreen extends React.Component {
                                         style={styles.addFriendInput}
                                         value = {this.state.addUserByEmail}
                                         onChangeText={(addUserByEmail) => this.setState({addUserByEmail})}
-                                        placeholder='add friend'
+                                        placeholder='add friend by email'
                                         returnKeyType='done'
                                         autoCapitalize="none"
                                         placeholderStyle={{ fontFamily: 'Futura' }}
