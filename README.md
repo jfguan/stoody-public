@@ -1,10 +1,6 @@
 # Stoody! Unproductively study with friends
 
-Ever wondered where daddy eric is smashing kids with lucina forward smash? If Alex is doing 388 or photoshopping people bald? Or if Ameya is laughing(not sure in joy or pain) at 482 or if michelle is purposefully dirtying those v i n t a g e sneaks youve come to the right place.
-
-Why this was written:
-People are in near proximity and would hangout but do not know if other people are free, and if so, where.
-This app most prominiently implies invitation to hangout. If you see someone, they are free and you can go find them. A
+Find your friends nearby! The main study areas, namely the ugli, hatcher, and fishbowl are all relatively close to each other and many times people might pass each other unknowingly when they might have hungout otherwise. Sort of like my find my friends or snapmaps, but meant to imply invitation: if you see me on the map, you're more than welcome to stop by or study with me!
 
 ### Features (checkout our video demo!):
 
