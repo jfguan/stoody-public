@@ -51,6 +51,7 @@ export default class FriendsScreen extends React.Component {
         if(!this.state.addUserByEmail){
             return false;
         }
+        console.log(this.state.addUserByEmail);
         // Check if friend adding exists
         db.collection('users').doc(this.state.addUserByEmail).get().then((docSnapshot) => {
             if (docSnapshot.exists) {
@@ -72,19 +73,19 @@ export default class FriendsScreen extends React.Component {
                       else {
                         usersRef.doc(currentUser.email).collection('friendReqs').doc(this.state.addUserByEmail).set({});
                       }
+                }).then(() => {
+                      this.setState({ 
+                        ...this.state,
+                        addUserByEmail: "Friendo added!"
+                      });
                 });
                 console.log(this.state.addUserByEmail);
-
-                this.setState({
-                    ...this.state,
-                    addUserByEmail: "Friend request sent!"
-                })
-            } 
+            }
             else {
                 this.setState({
                     ...this.state,
                     addUserByEmail: "Friendo no existo :("
-                })
+                });
               return false;
             }
         });
